@@ -2,16 +2,13 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - curl
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - webhooks
   - errors
 
 search: true
@@ -19,221 +16,79 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Hookdeck API! You can use our Admin API to manage & created your webhooks proxy.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The API currently only supports `application/json` for both input and output. Header is optional.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Use Basic Authentication to authorize your request. The username is your API Key and the password is blank:
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://api.hookdeck.io/"
+  -H "Content-Type: application/json"
+  -u "${YOUR_API_KEY}:"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to insert your API key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+Hookdeck uses API keys via Basic Auth to allow access to the API. You can retrieve your Hookdeck API key in your [dashboard](https://hookdeck.io/dashboard).
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Hoodeck expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Basic BASE64_API_TOKEN`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>BASE64_API_TOKEN</code> with your personal API key hash.
 </aside>
 
-# Kittens
+# Paging
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> The pagination objection:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+{
+  "pagination": {
+    "order_by": "created_at",
+    "order_direction": "desc",
+    "limit": 100,
+    "after": "web_2urj7h9puxk6obro3x",
+    "before": "web_2urj7h9puxk6obuf6i"
   }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+> Example to get the next page:
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+curl "https://api.hoockdeck.io/webhooks?after=web_2urj7h9puxk6obro3x"
+  -H "Authorization: Basic BASE64_API_TOKEN"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Example to get the previous page:
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+```shell
+curl "https://api.hoockdeck.io/webhooks?before=web_2urj7h9puxk6obuf6i"
+  -H "Authorization: Basic BASE64_API_TOKEN"
 ```
 
-> The above command returns JSON structured like this:
+> Example to get the next page without using the default ordering:
 
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+```shell
+curl "https://api.hoockdeck.io/webhooks?order_by=updated_at&order_direction=asc&after=web_2urj7h9puxk6obro3x"
+  -H "Authorization: Basic BASE64_API_TOKEN"
 ```
 
-This endpoint deletes a specific kitten.
+Many `GET` ednpoint are paged. We use Cursor (often called Keyset) based pagination for those endpoints.
 
-### HTTP Request
+To work with Keyset paging all the necessary information will be contain in the response body `pagination` object.
 
-`DELETE http://example.com/kittens/<ID>`
+| Parameter | Default        | Description                                                       |
+| --------- | -------------- | ----------------------------------------------------------------- |
+| order_by  | `"created_at"` | The sortable key to use (options varies base on the ressource )   |
+| order_by  | `"desc"`       | The direction to sort it (`"asc"` or `"desc"`)                    |
+| limit     | `100`          | The making amount of results returned per query (max: `250`)      |
+| after     | `undefined`    | The ID to provide in the query to get the next set of results     |
+| before    | `undefined`    | The ID to provide in the query to get the previous set of results |
 
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Unless you have specified a `order_by` or `order_direction` yourself, you can omit it from the next or previous set query. You only have to carry them over if you are not using the ressource default

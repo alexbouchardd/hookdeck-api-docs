@@ -1,4 +1,4 @@
-# ChangeLog & Roadmap
+# Changelog & Roadmap
 
 Follow Hookdeck's progress by visiting our Notion!
 

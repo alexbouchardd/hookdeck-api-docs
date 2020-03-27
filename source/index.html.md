@@ -73,7 +73,7 @@ As of right now, no signature verification is performed, however, we will eventu
 > The appended headers are:
 
 ```
-'X-Hookdeck-EventID':        Hookdeck event iD,
+'X-Hookdeck-EventID':        Hookdeck event id,
 'X-Hookdeck-Signature':      Hookdeck custom event signature,
 'X-Hookdeck-Attempt-Count':  Event attempt number,
 'X-Hookdeck-Event-URL':      Url to the hookdeck dashboard for that event
@@ -90,10 +90,14 @@ A ruleset is a reusable set of configuration to set the retry logic for any even
 
 ## Create your first webhook
 
+> Header
+```shell
+curl "POST https://api.hookdeck.io/webhooks"
+  -H "Authorization: Basic {{ BASE64_API_TOKEN }}"
+  -H "Content-Type: application/json"
+```
 
-> POST https://api.hookdeck.io/webhooks
-> Authorization: Basic {{ BASE64_API_TOKEN }}
-> Content-Type: application/json
+> Body 
 
 ```json
 {

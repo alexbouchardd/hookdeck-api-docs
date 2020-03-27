@@ -91,6 +91,7 @@ A ruleset is a reusable set of configuration to set the retry logic for any even
 ## Create your first webhook
 
 > Header
+
 ```shell
 curl "POST https://api.hookdeck.io/webhooks"
   -H "Authorization: Basic {{ BASE64_API_TOKEN }}"

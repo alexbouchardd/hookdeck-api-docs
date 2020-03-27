@@ -3,8 +3,8 @@
 > Endpoints
 
 ```
-GET      /events         
-GET      /events/:id                               
+GET      /attempts        
+GET      /attempts/:id                               
 ```
 
 Attempt objects allow you to monitor the attempts of your events.

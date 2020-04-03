@@ -47,7 +47,7 @@ curl "https://api.hookdeck.io/"
 
 Hookdeck uses API keys via Basic Auth to allow access to the API. You can retrieve your Hookdeck API key in your [dashboard](https://hookdeck.io/dashboard).
 
-Hoodeck expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Hookdeck expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: Basic BASE64_API_TOKEN`
 

@@ -28,16 +28,16 @@ Source objects allow you to define the third party sending the webhook.
 }
 ```
 
-| Parameter   | Class  | Default | Description                                |
-| ----------- | ------ | ------- | ------------------------------------------ |
-| id          | string |         | Source ID                                  |
-| team_id     | string |         | Deck ID                                    |
-| label       | string |         | Name of the source                         |
-| alias       | string | null    | A unique, human friendly id for the source |
-| description | string | null    | Description of the source                  |
-| archived_at | date   | null    | Date the source was archived               |
-| updated_at  | date   | now()   | ISO Last date the source was updated       |
-| created_at  | date   | now()   | ISO Date the source was created            |
+| Parameter   | Type     | Default | Description                                |
+| ----------- | -------- | ------- | ------------------------------------------ |
+| id          | `string` |         | Source ID                                  |
+| team_id     | `string` |         | Deck ID                                    |
+| label       | `string` |         | Name of the source                         |
+| alias       | `string` | `null`  | A unique, human friendly id for the source |
+| description | `string` | `null`  | Description of the source                  |
+| archived_at | `date`   | `null`  | Date the source was archived               |
+| updated_at  | `date`   |         | ISO Last `ISO Date` the source was updated |
+| created_at  | `date`   |         | ISO Date the source was created            |
 
 ## Retrieve all sources
 
@@ -85,6 +85,12 @@ This endpoint retrieves all unarchived sources.
 
 `GET https://api.hookdeck.io/sources`
 
+### Query Parameter
+
+| Parameter | Type      | Description                                 |
+| --------- | --------- | ------------------------------------------- |
+| archived  | `boolean` | Include the archived ressources in response |
+
 ## Retrieve a source
 
 > The command returns JSON structured like this
@@ -112,7 +118,7 @@ This endpoint retrieves a specific source.
 
 | Parameter | Description |
 | --------- | ----------- |
-| ID        | Source ID   |
+| id        | Source ID   |
 
 ## Create a source
 
@@ -135,11 +141,11 @@ This endpoint creates a source.
 
 `POST https://api.hookdeck.io/sources/`
 
-| Parameter   | Class  | Description                                |
-| ----------- | ------ | ------------------------------------------ |
-| label       | string | Name of the source                         |
-| alias       | string | A unique, human friendly id for the source |
-| description | string | Description of the source                  |
+| Parameter   | Type     | Description                                |
+| ----------- | -------- | ------------------------------------------ |
+| label       | `string` | Name of the source                         |
+| alias       | `string` | A unique, human friendly id for the source |
+| description | `string` | Description of the source                  |
 
 ## Update a source
 
@@ -168,15 +174,15 @@ This endpoint updates a source.
 
 | Parameter | Description |
 | --------- | ----------- |
-| ID        | Source ID   |
+| id        | Source ID   |
 
 ### Body Parameters
 
-| Parameter   | Class  | Description                                |
-| ----------- | ------ | ------------------------------------------ |
-| label       | string | Name of the source                         |
-| alias       | string | A unique, human friendly id for the source |
-| description | string | Description of the source                  |
+| Parameter   | Type     | Description                                |
+| ----------- | -------- | ------------------------------------------ |
+| label       | `string` | Name of the source                         |
+| alias       | `string` | A unique, human friendly id for the source |
+| description | `string` | Description of the source                  |
 
 ## Archive a source
 
@@ -205,10 +211,10 @@ This endpoint archives a source.
 
 | Parameter | Description |
 | --------- | ----------- |
-| ID        | Source ID   |
+| id        | Source ID   |
 
 <aside class="notice">
-The parameter "archived_at" is set to the current ISO timestamp
+The parameter `archived_at`is set to the current ISO timestamp
 </aside>
 
 ## Unarchive a source
@@ -238,8 +244,8 @@ This endpoint unarchives a source.
 
 | Parameter | Description |
 | --------- | ----------- |
-| ID        | Source ID   |
+| id        | Source ID   |
 
 <aside class="notice">
-The parameter "archived_at" becomes null
+The parameter `archived_at`becomes null
 </aside>

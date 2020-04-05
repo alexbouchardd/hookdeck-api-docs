@@ -183,21 +183,21 @@ When you create your first webhook, you can pass a `destination` and `source` de
 
 **Webhook**
 
-| Parameter | Class  | Description         |
+| Parameter | Type  | Description         |
 | --------- | ------ | ------------------- |
-| label     | string | Name of the webhook |
+| label     | `string` | Name of the webhook |
 
 **Source**
 
-| Parameter | Class  | Description        |
+| Parameter | Type  | Description        |
 | --------- | ------ | ------------------ |
-| label     | string | Name of the source |
+| label     | `string` | Name of the source |
 
 **Destination**
 
-| Parameter | Class  | Description                 |
+| Parameter | Type  | Description                 |
 | --------- | ------ | --------------------------- |
-| label     | string | Name of the destination     |
+| label     | `string` | Name of the destination     |
 | url       | url    | Endpoint of the destination |
 
 The body returns an ID for the source, destination and ruleset generated for the webhook. They can be reused by passing the `destination_id`, `source_id` or `ruleset_id` instead of an object.

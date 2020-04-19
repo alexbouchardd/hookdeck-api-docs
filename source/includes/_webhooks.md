@@ -27,14 +27,14 @@ Webhook objects allows you to proxy a source, a destination and a ruleset.
 }
 ```
 
-| Parameter      | Class     | Default    |Description                                 |
+| Parameter      | Type     | Default    |Description                                 |
 | -------------- | --------- | -----------|------------------------------------------- |
-|  id            | string    |            | Webhook ID                   |
-|  label         | string    |            | Name of the webhook                |
-|  alias         | string    | null       | Alternate name for the webhook             ||  team_id       | string    |            | Deck ID                    |
-|  archived_at   | date      | null       | Date the webhook was archived         |
-|  updated_at    | date      |            | Last date the webhook was updated        |
-|  created_at    | date      |            |Date the webhook was created         |
+|  id            | `string`   |            | Webhook ID                   |
+|  label         | `string`   |            | Name of the webhook                |
+|  alias         | `string`   | `null`       | Alternate name for the webhook             ||  team_id       | `string`   |            | Deck ID                    |
+|  archived_at   | `ISO Date`      | `null`       | Date the webhook was archived         |
+|  updated_at    | `ISO Date`      |            | Last `ISO Date` the webhook was updated        |
+|  created_at    | `ISO Date`      |            |Date the webhook was created         |
 
 ## Retrieve all webhooks
 
@@ -106,6 +106,12 @@ This endpoint retrieves all webhooks.
 
 `GET https://api.hookdeck.io/webhooks`
 
+### Query Parameter
+
+| Parameter | Type      | Description                                 |
+| --------- | --------- | ------------------------------------------- |
+| archived  | `boolean` | Include the archived ressources in response |
+
 ## Retrieve a webhook
 
 > The command returns JSON structured like this
@@ -166,7 +172,7 @@ This endpoint retrieves a specific webhook.
 
 | Parameter      | Description                                  |
 | -------------- | -------------------------------------------- |
-|  ID            | Webhook ID                   |
+|  id            | Webhook ID                   |
 
 ## Create a webhook with an undefined destination, source and ruleset
 
@@ -240,33 +246,33 @@ This endpoint creates a webhook.
 **Webhook**
 | Parameter      | Default   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
-|  label         | string    | Name of the webhook                |
-|  alias         | string    | Alternate name for the webhook          |   
+|  label         | `string`   | Name of the webhook                |
+|  alias         | `string`   | Alternate name for the webhook          |   
 
 **Source** 
 
 | Parameter      | Default   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
 |  label         |     | Name of the source                    |
-|  alias         | null   | Alternate name for the source                 |
-|  description   | null    | Description of the source                  |
+|  alias         | `null`   | Alternate name for the source                 |
+|  description   | `null`    | Description of the source                  |
 
 **Destination**
 
 | Parameter      | Default   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
-|  label         |  string   | Name of the destination                    |
-|  alias         | string    | Alternate name for the destination                 |
-|  description   | string    | Description of the destination                  |
+|  label         |  `string`  | Name of the destination                    |
+|  alias         | `string`   | Alternate name for the destination                 |
+|  description   | `string`   | Description of the destination                  |
 |  url           | url       | Endpoint of the destination                  |
 
 **Ruleset (optional)** 
 
 | Parameter      | Default   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
-|  alias         | string    | Alternate name for the ruleset          |   
-|  label         | string    |  Name of the ruleset                |
-|  description   | string    | Description of the ruleset          |
+|  alias         | `string`   | Alternate name for the ruleset          |   
+|  label         | `string`   |  Name of the ruleset                |
+|  description   | `string`   | Description of the ruleset          |
 |  retry_count   | integer   |  Number of retry attempts         |
 |  retry_interval| integer   | Time interval between retries in ms    |
 
@@ -336,28 +342,28 @@ This endpoint creates a webhook.
 `POST https://api.hookdeck.io/webhook/`
 
 **Webhook**
-| Parameter      | Class   | Description                                  |
+| Parameter      | Type   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
-|  label         | string    | Name of the webhook                |
+|  label         | `string`   | Name of the webhook                |
 
 **Source** 
 
-| Parameter      | Class   | Description                                  |
+| Parameter      | Type   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
-|  id            | string    | Source ID                      |
+|  id            | `string`   | Source ID                      |
 
 
 **Destination**
 
-| Parameter      | Class   | Description                                  |
+| Parameter      | Type   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
-|  id            | string   | Destination ID                      |
+|  id            | `string`  | Destination ID                      |
 
 **Ruleset (optional)** 
 
 | Parameter      | Default   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
-|  id            | string    | Ruleset ID                      |
+|  id            | `string`   | Ruleset ID                      |
 
 
 ## Update a webhook
@@ -421,14 +427,14 @@ This endpoint updates a webhook.
 
 | Parameter      | Description                                  |
 | -------------- | -------------------------------------------- |
-|  ID            | Webhook ID                   |
+|  id            | Webhook ID                   |
 
 ### Body Parameters
 
 | Parameter      | Default   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
-|  label         | string    | Name of the webhook                |
-|  alias         | string    | Alternate name for the webhook          |   
+|  label         | `string`   | Name of the webhook                |
+|  alias         | `string`   | Alternate name for the webhook          |   
 
 ## Archive a webhook TO BE UPDATED
 
@@ -458,11 +464,11 @@ This endpoint archives a webhook.
 
 | Parameter      | Description                                  |
 | -------------- | -------------------------------------------- |
-|  ID            | Webhook ID                   |
+|  id            | Webhook ID                   |
 
 
 <aside class="notice">
-The parameter "archived_at" is updated
+The parameter `archived_at`is updated
 </aside>
 
 ## Unarchive a webhook
@@ -526,8 +532,8 @@ This endpoint unarchives a webhook.
 
 | Parameter      | Description                                  |
 | -------------- | -------------------------------------------- |
-|  ID            | Webhook ID                   |
+|  id            | Webhook ID                   |
 
 <aside class="notice">
-The parameter "archived_at" becomes null
+The parameter `archived_at`becomes null
 </aside>

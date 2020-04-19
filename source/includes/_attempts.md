@@ -3,42 +3,41 @@
 > Endpoints
 
 ```
-GET      /attempts        
-GET      /attempts/:id                               
+GET      /attempts
+GET      /attempts/:id
 ```
 
 Attempt objects allow you to monitor the attempts of your events.
 
 ## Attempt object
 
-```json 
+```json
 {
-    "id": "atm_12n4ffxk8adnqqj",
-    "team_id": "tm_5b3mzbxk83c0k7i",
-    "event_id": "evt_12n4ffxk8admulc",
-    "response_status": 500,
-    "successful_at": null,
-    "updated_at": "2020-03-27T16:05:45.240Z",
-    "created_at": "2020-03-27T16:05:45.115Z",
-    "body": {}
+  "id": "atm_12n4ffxk8adnqqj",
+  "team_id": "tm_5b3mzbxk83c0k7i",
+  "event_id": "evt_12n4ffxk8admulc",
+  "response_status": 500,
+  "successful_at": null,
+  "updated_at": "2020-03-27T16:05:45.240Z",
+  "created_at": "2020-03-27T16:05:45.115Z",
+  "body": {}
 }
 ```
 
-| Parameter      | Class  | Default | Description                         |
-| -------------- | -------| --------|------------------------------------ |
-|  id                 | string |         |Attempt ID     |
-|  team_id            | string |         |Deck ID                    |
-|  event_id        | string |            |Event ID                 |
-|  sucessful_at       | date   | null    |Date of the successful event   |
-|  updated_at         | date   |         |Last date the event was updated        |
-|  created_at         | date   |         |Date the event was created             |
-
+| Parameter    | Type       | Default | Description                           |
+| ------------ | ---------- | ------- | ------------------------------------- |
+| id           | `string`   |         | Attempt ID                            |
+| team_id      | `string`   |         | Deck ID                               |
+| event_id     | `string`   |         | Event ID                              |
+| sucessful_at | `ISO Date` | `null`    | Date of the successful event          |
+| updated_at   | `ISO Date` |         | Last `ISO Date` the event was updated |
+| created_at   | `ISO Date` |         | Date the event was created            |
 
 ## Retrieve all attempts
 
 > The command returns JSON structured like this
 
-```json 
+```json
     "pagination": {
         "order_by": "created_at",
         "order_direction": "desc",
@@ -99,16 +98,16 @@ This endpoint retrieves all attempts.
 
 > The command returns JSON structured like this
 
-```json 
+```json
 {
-    "id": "atm_12n4ffxk8adnbk0",
-    "team_id": "tm_5b3mzbxk83c0k7i",
-    "event_id": "evt_12n4ffxk8admulc",
-    "response_status": 500,
-    "successful_at": null,
-    "updated_at": "2020-03-27T16:05:25.561Z",
-    "created_at": "2020-03-27T16:05:25.443Z",
-    "body": {}
+  "id": "atm_12n4ffxk8adnbk0",
+  "team_id": "tm_5b3mzbxk83c0k7i",
+  "event_id": "evt_12n4ffxk8admulc",
+  "response_status": 500,
+  "successful_at": null,
+  "updated_at": "2020-03-27T16:05:25.561Z",
+  "created_at": "2020-03-27T16:05:25.443Z",
+  "body": {}
 }
 ```
 
@@ -120,6 +119,6 @@ This endpoint retrieves a specific attempt.
 
 ### URL Parameter
 
-| Parameter      | Description                                  |
-| -------------- | -------------------------------------------- |
-|  ID            | Attempt ID                   |
+| Parameter | Description |
+| --------- | ----------- |
+| id        | Attempt ID  |

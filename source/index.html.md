@@ -5,29 +5,30 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - curl
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://hookdeck.io/signin'>Sign Up for a Developer Key</a>
+  - <a href='https://https://spectrum.chat/hookdeck?tab=chat'>Ask a question</a>
 
 includes:
   - sources
   - destinations
-  - rulesets 
+  - rulesets
   - webhooks
   - events
   - attempts
   - paging
   - bestpractices
-  - errors 
+  - errors
   - moreinformation
   - gethelp
-  
 
 search: true
 ---
 
 # Get Started
-Welcome to the Hookdeck API site! Our API suite allows you to proxy webhooks. Explore our data, browse descriptions of the available attributes and see examples of working requests and responses.
 
-If this is your first time using our APIs, please continue our Get Started guide. If you already have your API key, our Search and Response Formats can help you refine your results.
+Welcome to the Hookdeck Admin API! Our API allows you set up your webhooks, view your events and perform various actions such as retries. Explore our data, browse descriptions of the available attributes and see examples of working requests and responses.
+
+To learn move about Hookdeck view our official website at [https://hookdeck.io](https://hookdeck.io)
 
 ## Create your account
 
@@ -38,16 +39,21 @@ It won't come as a surprise the first step to create your account at [https://ho
 > Use Basic Authentication to authorize your request. The username is your API Key and the password is blank:
 
 ```shell
+<<<<<<< HEAD
 curl "https://api.hookdeck.io/me"
   -H "Content-Type: application/json"
+=======
+curl "https://api.hookdeck.io/" \
+  -H "Content-Type: application/json" \
+>>>>>>> afbd71fe7094e34bd3661136b30030cb2bfdc0d9
   -u "${YOUR_API_KEY}:"
 ```
 
 > Make sure to insert your API key.
 
-Hookdeck uses API keys via Basic Auth to allow access to the API. You can retrieve your Hookdeck API key in your [dashboard](https://hookdeck.io/dashboard).
+Hookdeck uses API keys via Basic Auth to allow access to the API. You can retrieve your Hookdeck API key in your [dashboard](https://hookdeck.io/dashboard/api).
 
-Hoodeck expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Hookdeck expects your API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: Basic BASE64_API_TOKEN`
 
@@ -55,10 +61,9 @@ Hoodeck expects for the API key to be included in all API requests to the server
 You must replace <code>BASE64_API_TOKEN</code> with your personal API key hash.
 </aside>
 
-
 ## Webhook configuration
 
-A webhook is essentially a 'Proxy' that is composed of 3 things, a source, a destination and a ruleset.
+A webhook is essentially a Webhook 'Proxy' that is composed of 3 things, a source, a destination and a ruleset.
 
 ### Sources
 
@@ -83,118 +88,122 @@ A destination is a representation of your own API where the webhooks will be del
 
 ### Rulesets
 
-A ruleset is a reusable set of configuration to set the retry logic for any event associated with a webhook. The retry logic has 2 params: 
+A ruleset is a reusable set of configuration to set the retry logic for any event associated with a webhook. The retry logic has 2 params:
 
-* Retry count `retries_count` is the maximum number of automatic retry that will be attempted. As soon as an event attempt receives a `2xx` status, no other attempts will be made
-* Retries interval `retries_interval` is the delays in milliseconds between retry. Retries are always rounded to the nearest minute (therefore the minimum delay is 60000ms).
+- Retry count `retries_count` is the maximum number of automatic retry that will be attempted. As soon as an event attempt receives a `2xx` status, no other attempts will be made
+- Retries interval `retries_interval` is the delays in milliseconds between retry. Retries are always rounded to the nearest minute (therefore the minimum delay is 60000ms).
+
+<aside class="notice">
+Each new account comes with a 'Default Ruleset' that is automatically added to any webhook without a manually associated ruleset. The 'Default Ruleset' has a `retries_count` of `5` and a `retries_interval` of `3600000` (one hour). Therefore, any webhook will be default ruleset will be retried up to 5 times over a 5 hour period.
+</aside>
 
 ## Create your first webhook
 
 > Header
 
 ```shell
-curl "POST https://api.hookdeck.io/webhooks"
-  -H "Authorization: Basic {{ BASE64_API_TOKEN }}"
+curl "POST https://api.hookdeck.io/webhooks" \
+  -H "Authorization: Basic {{ BASE64_API_TOKEN }}" \
   -H "Content-Type: application/json"
 ```
 
-> Body 
+> Body
 
 ```json
 {
-	"label": "Shopify to My API",
-	"source": {
-		"label": "Shopify",
+  "label": "Shopify to My API",
+  "source": {
+    "label": "Shopify"
   },
   "destination": {
-		"label": "My API",
-		"url": "https://example.com/webhook"
-	}
+    "label": "My API",
+    "url": "https://example.com/webhook"
+  }
 }
 ```
 
-> Example Returned Body
+> Example returned body
 
 ```json
 {
-    "id": "web_xxxxxxxxxxxxxxx",
-    "label": "Shopify to My API",
+  "id": "web_xxxxxxxxxxxxxxx",
+  "label": "Shopify to My API",
+  "alias": null,
+  "team_id": "tm_xxxxxxxxxxxxxxx",
+  "archived_at": null,
+  "updated_at": "2020-03-22T01:07:38.162Z",
+  "created_at": "2020-03-22T01:07:38.161Z",
+  "destination": {
+    "id": "des_xxxxxxxxxxxxxxx",
+    "team_id": "tm_xxxxxxxxxxxxxxx",
+    "label": "My API",
+    "alias": null,
+    "description": null,
+    "url": "https://example.com/webhook",
+    "archived_at": null,
+    "updated_at": "2020-03-22T01:07:38.154Z",
+    "created_at": "2020-03-22T01:07:38.149Z"
+  },
+  "ruleset": {
+    "id": "rls_xxxxxxxxxxxxxxx",
     "alias": null,
     "team_id": "tm_xxxxxxxxxxxxxxx",
+    "label": "Default Ruleset",
+    "description": null,
+    "retry_count": 5,
+    "retry_interval": 3600000,
+    "retry_strategy": "linear",
+    "is_team_default": true,
     "archived_at": null,
-    "updated_at": "2020-03-22T01:07:38.162Z",
-    "created_at": "2020-03-22T01:07:38.161Z",
-    "destination": {
-        "id": "des_xxxxxxxxxxxxxxx",
-        "team_id": "tm_xxxxxxxxxxxxxxx",
-        "label": "My API",
-        "alias": null,
-        "description": null,
-        "url": "https://example.com/webhook",
-        "archived_at": null,
-        "updated_at": "2020-03-22T01:07:38.154Z",
-        "created_at": "2020-03-22T01:07:38.149Z"
-    },
-    "ruleset": {
-        "id": "rls_xxxxxxxxxxxxxxx",
-        "alias": null,
-        "team_id": "tm_xxxxxxxxxxxxxxx",
-        "label": "Default Ruleset",
-        "description": null,
-        "retry_count": 5,
-        "retry_interval": 3600000,
-        "retry_strategy": "linear",
-        "is_team_default": true,
-        "archived_at": null,
-        "updated_at": "2020-03-22T01:00:37.647Z",
-        "created_at": "2020-03-22T01:00:37.647Z"
-    },
-    "source": {
-        "id": "src_xxxxxxxxxxxxxxx",
-        "team_id": "tm_xxxxxxxxxxxxxxx",
-        "label": "Shopify",
-        "alias": null,
-        "description": null,
-        "archived_at": null,
-        "updated_at": "2020-03-22T01:07:38.155Z",
-        "created_at": "2020-03-22T01:07:38.150Z"
-    }
+    "updated_at": "2020-03-22T01:00:37.647Z",
+    "created_at": "2020-03-22T01:00:37.647Z"
+  },
+  "source": {
+    "id": "src_xxxxxxxxxxxxxxx",
+    "team_id": "tm_xxxxxxxxxxxxxxx",
+    "label": "Shopify",
+    "alias": null,
+    "description": null,
+    "archived_at": null,
+    "updated_at": "2020-03-22T01:07:38.155Z",
+    "created_at": "2020-03-22T01:07:38.150Z"
+  }
 }
 ```
-> Example reusing IDs
+
+> Example reusing a ressource
 
 ```json
 {
-	"label": "Shopify to My API",
-	"destination_id": "des_xxxxxxxxxxxxxxx",
-	"source_id": "src_xxxxxxxxxxxxxxx",
-	"ruleset_id": "rls_xxxxxxxxxxxxxxx"
+  "label": "Shopify to My API",
+  "destination_id": "des_xxxxxxxxxxxxxxx",
+  "source_id": "src_xxxxxxxxxxxxxxx",
+  "ruleset_id": "rls_xxxxxxxxxxxxxxx"
 }
 ```
 
-When you create your first webhook, you can pass a `destination` and `source` definition. Along with the request, all the required ressources will be created. When a webhook is created without a `ruleset`, the default ruleset is applied (more details in Rulesets). 
+When you create your first webhook, you can pass a `destination` and `source` definition. Along with the request, all the required ressources will be created. When a webhook is created without a `ruleset`, the default ruleset is applied.
 
 ### Mandatory parameters
 
 **Webhook**
 
-| Parameter      | Class     | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  label         | string    | Name of the webhook                |
+| Parameter | Type  | Description         |
+| --------- | ------ | ------------------- |
+| label     | `string` | Name of the webhook |
 
-**Source** 
+**Source**
 
-| Parameter      | Class     | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  label         | string    | Name of the source                    |
+| Parameter | Type  | Description        |
+| --------- | ------ | ------------------ |
+| label     | `string` | Name of the source |
 
 **Destination**
 
-| Parameter      | Class   | Description                                  |
-| -------------- | ------- | -------------------------------------------- |
-|  label         | string  | Name of the destination                    |
-|  url           | url     | Endpoint of the destination                  |
-
+| Parameter | Type  | Description                 |
+| --------- | ------ | --------------------------- |
+| label     | `string` | Name of the destination     |
+| url       | url    | Endpoint of the destination |
 
 The body returns an ID for the source, destination and ruleset generated for the webhook. They can be reused by passing the `destination_id`, `source_id` or `ruleset_id` instead of an object.
 
@@ -203,4 +212,5 @@ The API currently only supports `application/json` for both input and output. He
 </aside>
 
 ## Monitoring
+
 All events that are handled by Hookdeck can be viewed, inspected, filtered, sorted, manually retried and cancelled in your dashboard or with the API.

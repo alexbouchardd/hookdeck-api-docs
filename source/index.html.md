@@ -39,13 +39,8 @@ It won't come as a surprise the first step to create your account at [https://ho
 > Use Basic Authentication to authorize your request. The username is your API Key and the password is blank:
 
 ```shell
-<<<<<<< HEAD
 curl "https://api.hookdeck.io/me"
   -H "Content-Type: application/json"
-=======
-curl "https://api.hookdeck.io/" \
-  -H "Content-Type: application/json" \
->>>>>>> afbd71fe7094e34bd3661136b30030cb2bfdc0d9
   -u "${YOUR_API_KEY}:"
 ```
 

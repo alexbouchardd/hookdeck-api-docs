@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://hookdeck.io/signin'>Sign Up for a Developer Key</a>
-  - <a href='https://https://spectrum.chat/hookdeck?tab=chat'>Ask a question</a>
+  - <a href='https://spectrum.chat/hookdeck?tab=chat'>Ask a question</a>
 
 includes:
   - sources

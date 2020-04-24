@@ -244,6 +244,7 @@ This endpoint creates a webhook.
 `POST https://api.hookdeck.io/webhook/`
 
 **Webhook**
+
 | Parameter      | Default   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
 |  label         | `string`   | Name of the webhook                |
@@ -342,6 +343,7 @@ This endpoint creates a webhook.
 `POST https://api.hookdeck.io/webhook/`
 
 **Webhook**
+
 | Parameter      | Type   | Description                                  |
 | -------------- | --------- | -------------------------------------------- |
 |  label         | `string`   | Name of the webhook                |

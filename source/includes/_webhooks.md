@@ -438,7 +438,7 @@ This endpoint updates a webhook.
 |  label         | `string`   | Name of the webhook                |
 |  alias         | `string`   | Alternate name for the webhook          |   
 
-## Archive a webhook TO BE UPDATED
+## Archive a webhook
 
 > The command returns JSON structured like this
 

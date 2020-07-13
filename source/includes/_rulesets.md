@@ -217,7 +217,7 @@ This endpoint updates a ruleset.
 | retry_count    | `integer` | Number of retry attempts            |
 | retry_interval | `integer` | Time interval between retries in ms |
 
-## Archive a ruleset TO BE UPDATED
+## Archive a ruleset
 
 > The command returns JSON structured like this
 

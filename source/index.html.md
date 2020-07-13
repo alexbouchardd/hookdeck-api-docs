@@ -83,10 +83,17 @@ A destination is a representation of your own API where the webhooks will be del
 
 ### Rulesets
 
-A ruleset is a reusable set of configuration to set the retry logic for any event associated with a webhook. The retry logic has 2 params:
+A ruleset is a reusable set of configuration to set the retry logic and alert logic for any event associated with a webhook. 
+
+The retry logic has 2 params:
 
 - Retry count `retries_count` is the maximum number of automatic retry that will be attempted. As soon as an event attempt receives a `2xx` status, no other attempts will be made
 - Retries interval `retries_interval` is the delays in milliseconds between retry. Retries are always rounded to the nearest minute (therefore the minimum delay is 60000ms).
+
+The alert logic has 2 params: 
+
+- Alert strategy `alert_strategy` is the rule for failed attempt alerts. Based on the chosen strategy, you can receive an email alert for each failed attempts, last failed attempt at the end of the retry logic, or you can disable alerts. 
+- Alert interval `alert_interval` is the delays in milliseconds between alerts. Alerts are always rounded to the nearest minute (therefore the minimum delay is 60000ms).
 
 <aside class="notice">
 Each new account comes with a 'Default Ruleset' that is automatically added to any webhook without a manually associated ruleset. The 'Default Ruleset' has a `retries_count` of `5` and a `retries_interval` of `3600000` (one hour). Therefore, any webhook will be default ruleset will be retried up to 5 times over a 5 hour period.
@@ -151,7 +158,9 @@ curl "POST https://api.hookdeck.io/webhooks" \
     "is_team_default": true,
     "archived_at": null,
     "updated_at": "2020-03-22T01:00:37.647Z",
-    "created_at": "2020-03-22T01:00:37.647Z"
+    "created_at": "2020-03-22T01:00:37.647Z",
+    "alert_interval": null,
+    "alert_strategy": null
   },
   "source": {
     "id": "src_xxxxxxxxxxxxxxx",

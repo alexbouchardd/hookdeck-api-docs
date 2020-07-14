@@ -96,7 +96,7 @@ The alert logic has 2 params:
 - Alert interval `alert_interval` is the delays in milliseconds between alerts. Alerts are always rounded to the nearest minute (therefore the minimum delay is 60000ms).
 
 <aside class="notice">
-Each new account comes with a 'Default Ruleset' that is automatically added to any webhook without a manually associated ruleset. The 'Default Ruleset' has a `retries_count` of `5` and a `retries_interval` of `3600000` (one hour). Therefore, any webhook will be default ruleset will be retried up to 5 times over a 5 hour period.
+Each new account comes with a 'Default Ruleset' that is automatically added to any webhook without a manually associated ruleset. The 'Default Ruleset' has a `retries_count` of `5`, a `retries_interval` of `3600000` (one hour), a `alert_strategy` of `last_attempt`, and a `alert_interval` of `3600000` (one hour). Therefore, any webhook will be default ruleset will be retried up to 5 times over a 5 hour period then send an email alert if the last retry attempt is a failure.
 </aside>
 
 ## Create your first webhook

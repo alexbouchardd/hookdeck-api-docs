@@ -29,8 +29,8 @@ Ruleset objects allows you to set an automaic retry logic and alert strategy for
   "archived_at": null,
   "updated_at": "2020-03-22T17:45:20.742Z",
   "created_at": "2020-03-22T17:45:20.746Z",
-  "alert_interval": null,
-  "alert_strategy": null
+  "alert_interval": 3600000,
+  "alert_strategy": "last_attempt"
 }
 ```
 
@@ -50,8 +50,8 @@ When a webhook is created without a ruleset, the default ruleset is applied. Opt
 | archived_at     | `date`    | `null`              | Date the ruleset was archived           |
 | updated_at      | `date`    |                     | Last `ISO Date` the ruleset was updated |
 | created_at      | `date`    |                     | Date the ruleset was created            |
-| alert interval  | `integer` | `null`              | Time interval between alerts in ms      |
-| alert strategy  | `string`  | `null`              | Alert strategy for the ruleset          |
+| alert interval  | `integer` | `3600000`           | Time interval between alerts in ms      |
+| alert strategy  | `string`  | `last_attempt`      | Alert strategy for the ruleset          |
 
 
 ## Retrieve all rulesets
@@ -99,8 +99,8 @@ When a webhook is created without a ruleset, the default ruleset is applied. Opt
             "archived_at": null,
             "updated_at": "2020-03-22T17:45:20.742Z",
             "created_at": "2020-03-22T17:45:20.746Z",
-            "alert_interval": null,
-            "alert_strategy": null
+            "alert_interval": 3600000,
+            "alert_strategy": "last_attempt"
         }
     ]
 }

@@ -241,7 +241,7 @@ This endpoint creates a webhook.
 
 ### HTTP Request
 
-`POST https://api.hookdeck.io/webhook/`
+`POST https://api.hookdeck.io/webhooks/`
 
 **Webhook**
 
@@ -349,7 +349,7 @@ This endpoint creates a webhook.
 
 ### HTTP Request
 
-`POST https://api.hookdeck.io/webhook/`
+`POST https://api.hookdeck.io/webhooks/`
 
 **Webhook**
 
@@ -439,7 +439,7 @@ This endpoint updates a webhook.
 
 ### HTTP Request
 
-`PUT https://api.hookdeck.io/webhook/:id`
+`PUT https://api.hookdeck.io/webhooks/:id`
 
 ### URL Parameter
 
@@ -476,7 +476,7 @@ This endpoint archives a webhook.
 
 ### HTTP Request
 
-`PUT https://api.hookdeck.io/webhook/:id/archive`
+`PUT https://api.hookdeck.io/webhooks/:id/archive`
 
 ### URL Parameter
 
@@ -543,7 +543,7 @@ This endpoint unarchives a webhook.
 
 ### HTTP Request
 
-`PUT https://api.hookdeck.io/webhook/:id/unarchive`
+`PUT https://api.hookdeck.io/webhooks/:id/unarchive`
 
 ### URL Parameter
 

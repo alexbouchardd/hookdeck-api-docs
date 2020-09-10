@@ -53,56 +53,55 @@ When a webhook is created without a ruleset, the default ruleset is applied. Opt
 | alert interval  | `integer` | `3600000`           | Time interval between alerts in ms      |
 | alert strategy  | `string`  | `last_attempt`      | Alert strategy for the ruleset          |
 
-
 ## Retrieve all rulesets
 
 > The command returns JSON structured like this
 
 ```json
-  {
-    "pagination": {
-        "order_by": "created_at",
-        "order_direction": "desc",
-        "limit": 100,
-        "after": "rls_5b3mzbxk83c0k89",
-        "before": "rls_1b69dxk891v0g0"
+{
+  "pagination": {
+    "order_by": "created_at",
+    "order_direction": "desc",
+    "limit": 100,
+    "after": "rls_5b3mzbxk83c0k89",
+    "before": "rls_1b69dxk891v0g0"
+  },
+  "total_count": 2,
+  "count": 2,
+  "models": [
+    {
+      "id": "rls_1b69dxk891v0g0",
+      "alias": null,
+      "team_id": "tm_5b3mzbxk83c0k7i",
+      "label": "Ruleset 1",
+      "description": null,
+      "retry_count": 10,
+      "retry_interval": 3600000,
+      "retry_strategy": "linear",
+      "is_team_default": false,
+      "archived_at": null,
+      "updated_at": "2020-03-26T17:50:45.710Z",
+      "created_at": "2020-03-26T17:47:42.725Z",
+      "alert_interval": 3600000,
+      "alert_strategy": "each_attempt"
     },
-    "total_count": 2,
-    "count": 2,
-    "models": [
-        {
-            "id": "rls_1b69dxk891v0g0",
-            "alias": null,
-            "team_id": "tm_5b3mzbxk83c0k7i",
-            "label": "Ruleset 1",
-            "description": null,
-            "retry_count": 10,
-            "retry_interval": 3600000,
-            "retry_strategy": "linear",
-            "is_team_default": false,
-            "archived_at": null,
-            "updated_at": "2020-03-26T17:50:45.710Z",
-            "created_at": "2020-03-26T17:47:42.725Z",
-            "alert_interval": 3600000,
-            "alert_strategy": "each_attempt"
-        },
-        {
-            "id": "rls_5b3mzbxk83c0k89",
-            "alias": null,
-            "team_id": "tm_5b3mzbxk83c0k7i",
-            "label": "Default Ruleset",
-            "description": null,
-            "retry_count": 5,
-            "retry_interval": 3600000,
-            "retry_strategy": "linear",
-            "is_team_default": true,
-            "archived_at": null,
-            "updated_at": "2020-03-22T17:45:20.742Z",
-            "created_at": "2020-03-22T17:45:20.746Z",
-            "alert_interval": 3600000,
-            "alert_strategy": "last_attempt"
-        }
-    ]
+    {
+      "id": "rls_5b3mzbxk83c0k89",
+      "alias": null,
+      "team_id": "tm_5b3mzbxk83c0k7i",
+      "label": "Default Ruleset",
+      "description": null,
+      "retry_count": 5,
+      "retry_interval": 3600000,
+      "retry_strategy": "linear",
+      "is_team_default": true,
+      "archived_at": null,
+      "updated_at": "2020-03-22T17:45:20.742Z",
+      "created_at": "2020-03-22T17:45:20.746Z",
+      "alert_interval": 3600000,
+      "alert_strategy": "last_attempt"
+    }
+  ]
 }
 ```
 
@@ -114,9 +113,9 @@ This endpoint retrieves all rulesets.
 
 ### Query Parameter
 
-| Parameter | Type      | Description                                 |
-| --------- | --------- | ------------------------------------------- |
-| archived  | `boolean` | Include the archived ressources in response |
+| Parameter | Type      | Description                                |
+| --------- | --------- | ------------------------------------------ |
+| archived  | `boolean` | Include the archived resources in response |
 
 ## Retrieve a ruleset
 
@@ -178,15 +177,15 @@ This endpoint creates a ruleset.
 
 `POST https://api.hookdeck.io/ruleset/`
 
-| Parameter      | Type      | Description                         |
-| -------------- | --------- | ----------------------------------- |
-| alias          | `string`  | Alternate name for the ruleset      |
-| label          | `string`  | Name of the ruleset                 |
-| description    | `string`  | Description of the ruleset          |
-| retry_count    | `integer` | Number of retry attempts            |
-| retry_interval | `integer` | Time interval between retries in ms |
-| alert interval | `integer` | Time interval between alerts in ms  |
-| alert strategy | `string`  | Alert strategy for the ruleset (null, each_attempt or last_attempt)     |
+| Parameter      | Type      | Description                                                         |
+| -------------- | --------- | ------------------------------------------------------------------- |
+| alias          | `string`  | Alternate name for the ruleset                                      |
+| label          | `string`  | Name of the ruleset                                                 |
+| description    | `string`  | Description of the ruleset                                          |
+| retry_count    | `integer` | Number of retry attempts                                            |
+| retry_interval | `integer` | Time interval between retries in ms                                 |
+| alert interval | `integer` | Time interval between alerts in ms                                  |
+| alert strategy | `string`  | Alert strategy for the ruleset (null, each_attempt or last_attempt) |
 
 ## Update a ruleset
 
@@ -225,16 +224,15 @@ This endpoint updates a ruleset.
 
 ### Body Parameters
 
-| Parameter      | Type      | Description                         |
-| -------------- | --------- | ----------------------------------- |
-| alias          | `string`  | Alternate name for the ruleset      |
-| label          | `string`  | Name of the ruleset                 |
-| description    | `string`  | Description of the ruleset          |
-| retry_count    | `integer` | Number of retry attempts            |
-| retry_interval | `integer` | Time interval between retries in ms |
-| alert interval | `integer` | Time interval between alerts in ms  |
-| alert strategy | `string`  | Alert strategy for the ruleset (null, each_attempt or last_attempt)     |
-
+| Parameter      | Type      | Description                                                         |
+| -------------- | --------- | ------------------------------------------------------------------- |
+| alias          | `string`  | Alternate name for the ruleset                                      |
+| label          | `string`  | Name of the ruleset                                                 |
+| description    | `string`  | Description of the ruleset                                          |
+| retry_count    | `integer` | Number of retry attempts                                            |
+| retry_interval | `integer` | Time interval between retries in ms                                 |
+| alert interval | `integer` | Time interval between alerts in ms                                  |
+| alert strategy | `string`  | Alert strategy for the ruleset (null, each_attempt or last_attempt) |
 
 <aside class="notice">
 If alert_strategy is null, alerts are disabled.

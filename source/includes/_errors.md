@@ -33,8 +33,8 @@ With any HTTP error the response body will contain a few properties.
 | 200         | Good Request -- Your request is valid.                                                    |
 | 400         | Bad Request -- Your request is invalid and could not be understood.                       |
 | 401         | Unauthorized -- Your API key is wrong.                                                    |
-| 403         | Forbidden -- The ressouce requested access is restricted.                                 |
-| 404         | Not Found -- The ressource could not be found.                                            |
+| 403         | Forbidden -- The resource requested access is restricted.                                 |
+| 404         | Not Found -- The resource could not be found.                                             |
 | 422         | Unprocessable Entry -- Your request was understood but contains invalid input.            |
 | 500         | Internal Server Error -- We had a problem with our server. Try again later.               |
 | 503         | Service Unavailable -- We're temporarily offline for maintenance. Please try again later. |

@@ -35,6 +35,7 @@ Webhook objects allows you to proxy a source, a destination and a ruleset.
 | archived_at | `ISO Date` | `null`  | Date the webhook was archived           |
 | updated_at  | `ISO Date` |         | Last `ISO Date` the webhook was updated |
 | created_at  | `ISO Date` |         | Date the webhook was created            |
+| url         | `string`   |         | Unique webhook URL from Hookdeck        |
 
 ## Retrieve all webhooks
 
@@ -94,7 +95,8 @@ Webhook objects allows you to proxy a source, a destination and a ruleset.
         "archived_at": null,
         "updated_at": "2020-03-22T17:45:20.742Z",
         "created_at": "2020-03-22T17:45:20.746Z"
-      }
+      },
+      "url": "https://api.hookdeck.io/web_5b3mzbxk83c8qml"
     }
   ]
 }
@@ -108,9 +110,9 @@ This endpoint retrieves all webhooks.
 
 ### Query Parameter
 
-| Parameter | Type      | Description                                 |
-| --------- | --------- | ------------------------------------------- |
-| archived  | `boolean` | Include the archived ressources in response |
+| Parameter | Type      | Description                                |
+| --------- | --------- | ------------------------------------------ |
+| archived  | `boolean` | Include the archived resources in response |
 
 ## Retrieve a webhook
 
@@ -159,7 +161,8 @@ This endpoint retrieves all webhooks.
         "archived_at": null,
         "updated_at": "2020-03-22T17:45:20.742Z",
         "created_at": "2020-03-22T17:45:20.746Z"
-    }
+    },
+    "url": "https://api.hookdeck.io/web_12n4ffxk8aayze2"
 ```
 
 This endpoint retrieves a specific webhook.
@@ -233,7 +236,8 @@ This endpoint retrieves a specific webhook.
         "archived_at": null,
         "updated_at": "2020-03-22T17:45:20.742Z",
         "created_at": "2020-03-22T17:45:20.746Z"
-    }
+    },
+    "url": "https://api.hookdeck.io/web_12n4ffxk8aayze2"
 }
 ```
 
@@ -281,10 +285,9 @@ This endpoint creates a webhook.
 
 The response returns an ID used in the webhook's unique URL. Use this URL to update the endpoint on your systems.
 
-The format of Hookdeck's URL is  
-`https://events.hookdeck.io/e/:id`
-
-Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
+| Parameter | Default  | Description                      |
+| --------- | -------- | -------------------------------- |
+| url       | `string` | Unique webhook URL from Hookdeck |
 
 ## Create a webhook with destination ID, source ID and ruleset ID
 
@@ -341,7 +344,8 @@ Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
          "archived_at": null,
          "updated_at": "2020-03-22T17:45:20.742Z",
          "created_at": "2020-03-22T17:45:20.746Z"
-    }
+    },
+    "url": "https://api.hookdeck.io/web_5b3mzbxk83dcij0"
 }
 ```
 
@@ -379,10 +383,9 @@ This endpoint creates a webhook.
 
 The response returns an ID used in the webhook's unique URL. Use this URL to update the endpoint on your systems.
 
-The format of Hookdeck's URL is  
-`https://events.hookdeck.io/e/:id`
-
-Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
+| Parameter | Default  | Description                      |
+| --------- | -------- | -------------------------------- |
+| url       | `string` | Unique webhook URL from Hookdeck |
 
 ## Update a webhook
 
@@ -431,7 +434,8 @@ Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
     "archived_at": null,
     "updated_at": "2020-03-22T17:45:20.742Z",
     "created_at": "2020-03-22T17:45:20.746Z"
-  }
+  },
+  "url": "https://api.hookdeck.io/web_12n4ffxk8aayze2"
 }
 ```
 
@@ -535,7 +539,8 @@ The parameter `archived_at`is updated
     "archived_at": null,
     "updated_at": "2020-03-27T14:50:30.690Z",
     "created_at": "2020-03-27T14:50:30.688Z"
-  }
+  },
+  "url": "https://api.hookdeck.io/web_12n4ffxk8aayze2"
 }
 ```
 

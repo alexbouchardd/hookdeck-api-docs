@@ -241,7 +241,7 @@ The API currently only supports `application/json` for both input and output. He
   },
 ```
 
-Update your endpoint with the unique URL provided by Hookdeck.
+Update your endpoint with the webhook's unique URL by Hookdeck.
 
 **Hookdeck's URL**
 

@@ -239,11 +239,6 @@ This endpoint retrieves a specific webhook.
 
 This endpoint creates a webhook.
 
-The format of Hookdeck's URL is  
-`https://events.hookdeck.io/e/:id`
-
-Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
-
 ### HTTP Request
 
 `POST https://api.hookdeck.io/webhook/`
@@ -281,6 +276,15 @@ Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
 | description    | `string` | Description of the ruleset          |
 | retry_count    | integer  | Number of retry attempts            |
 | retry_interval | integer  | Time interval between retries in ms |
+
+**Response**
+
+The response returns an ID used in the webhook's unique URL. Use this URL to update the endpoint on your systems.
+
+The format of Hookdeck's URL is  
+`https://events.hookdeck.io/e/:id`
+
+Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
 
 ## Create a webhook with destination ID, source ID and ruleset ID
 
@@ -343,11 +347,6 @@ Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
 
 This endpoint creates a webhook.
 
-The format of Hookdeck's URL is  
-`https://events.hookdeck.io/e/:id`
-
-Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
-
 ### HTTP Request
 
 `POST https://api.hookdeck.io/webhook/`
@@ -375,6 +374,15 @@ Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
 | Parameter | Default  | Description |
 | --------- | -------- | ----------- |
 | id        | `string` | Ruleset ID  |
+
+**Response**
+
+The response returns an ID used in the webhook's unique URL. Use this URL to update the endpoint on your systems.
+
+The format of Hookdeck's URL is  
+`https://events.hookdeck.io/e/:id`
+
+Example for Stripe to My API: https://events.hookdeck.io/e/web_5b3mzbxk83dcij0
 
 ## Update a webhook
 

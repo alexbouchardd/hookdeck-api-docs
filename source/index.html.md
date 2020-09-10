@@ -171,11 +171,12 @@ curl "POST https://api.hookdeck.io/webhooks" \
     "archived_at": null,
     "updated_at": "2020-03-22T01:07:38.155Z",
     "created_at": "2020-03-22T01:07:38.150Z"
-  }
+  },
+  "url": "https://api.hookdeck.io/web_xxxxxxxxxxxxxxx"
 }
 ```
 
-> Example reusing a ressource
+> Example reusing a resource
 
 ```json
 {
@@ -186,7 +187,7 @@ curl "POST https://api.hookdeck.io/webhooks" \
 }
 ```
 
-When you create your first webhook, you can pass a `destination` and `source` definition. Along with the request, all the required ressources will be created. When a webhook is created without a `ruleset`, the default ruleset is applied.
+When you create your first webhook, you can pass a `destination` and `source` definition. Along with the request, all the required resources will be created. When a webhook is created without a `ruleset`, the default ruleset is applied.
 
 ### Mandatory parameters
 
@@ -229,30 +230,25 @@ The API currently only supports `application/json` for both input and output. He
   "updated_at": "2020-03-22T01:07:38.162Z",
   "created_at": "2020-03-22T01:07:38.161Z",
   "destination": {
-    "id": "des_xxxxxxxxxxxxxxx",
-    "team_id": "tm_xxxxxxxxxxxxxxx",
-    "label": "My API",
-    "alias": null,
-    "description": null,
-    "url": "https://example.com/webhook",
-    "archived_at": null,
-    "updated_at": "2020-03-22T01:07:38.154Z",
-    "created_at": "2020-03-22T01:07:38.149Z"
+    ...
   },
+  "ruleset": {
+    ...
+  },
+  "source": {
+   ...
+  },
+  "url": "https://api.hookdeck.io/web_xxxxxxxxxxxxxxx"
+}
 ```
 
-Update your endpoint with the webhook's unique URL by Hookdeck.
+Update the endpoint on your systems with the webhook's unique `url`.
 
-**Hookdeck's URL**
+**Webhook URL**
 
-| Parameter | Type     | Description  |
-| --------- | -------- | ------------ |
-| id        | `string` | Webhook's ID |
-
-URL format
-https://events.hookdeck.io/e/:id
-
-(To be included in API response, fix coming soon)
+| Parameter | Type     | Description                      |
+| --------- | -------- | -------------------------------- |
+| url       | `string` | Unique webhook URL from Hookdeck |
 
 ## Monitoring
 

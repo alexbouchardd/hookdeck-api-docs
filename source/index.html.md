@@ -172,7 +172,7 @@ curl "POST https://api.hookdeck.io/webhooks" \
     "updated_at": "2020-03-22T01:07:38.155Z",
     "created_at": "2020-03-22T01:07:38.150Z"
   },
-  "url": "https://api.hookdeck.io/web_xxxxxxxxxxxxxxx"
+  "url": "https://events.hookdeck.io/e/web_xxxxxxxxxxxxxxx"
 }
 ```
 
@@ -238,7 +238,7 @@ The API currently only supports `application/json` for both input and output. He
   "source": {
    ...
   },
-  "url": "https://api.hookdeck.io/web_xxxxxxxxxxxxxxx"
+  "url": "https://events.hookdeck.io/e/web_xxxxxxxxxxxxxxx"
 }
 ```
 

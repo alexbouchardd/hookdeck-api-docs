@@ -96,7 +96,7 @@ Webhook objects allows you to proxy a source, a destination and a ruleset.
         "updated_at": "2020-03-22T17:45:20.742Z",
         "created_at": "2020-03-22T17:45:20.746Z"
       },
-      "url": "https://api.hookdeck.io/web_5b3mzbxk83c8qml"
+      "url": "https://events.hookdeck.io/e/web_5b3mzbxk83c8qml"
     }
   ]
 }
@@ -162,7 +162,7 @@ This endpoint retrieves all webhooks.
         "updated_at": "2020-03-22T17:45:20.742Z",
         "created_at": "2020-03-22T17:45:20.746Z"
     },
-    "url": "https://api.hookdeck.io/web_12n4ffxk8aayze2"
+    "url": "https://events.hookdeck.io/e/web_12n4ffxk8aayze2"
 ```
 
 This endpoint retrieves a specific webhook.
@@ -237,7 +237,7 @@ This endpoint retrieves a specific webhook.
         "updated_at": "2020-03-22T17:45:20.742Z",
         "created_at": "2020-03-22T17:45:20.746Z"
     },
-    "url": "https://api.hookdeck.io/web_12n4ffxk8aayze2"
+    "url": "https://events.hookdeck.io/e/web_12n4ffxk8aayze2"
 }
 ```
 
@@ -345,7 +345,7 @@ The response returns an ID used in the webhook's unique URL. Use this URL to upd
          "updated_at": "2020-03-22T17:45:20.742Z",
          "created_at": "2020-03-22T17:45:20.746Z"
     },
-    "url": "https://api.hookdeck.io/web_5b3mzbxk83dcij0"
+    "url": "https://events.hookdeck.io/e/web_5b3mzbxk83dcij0"
 }
 ```
 
@@ -435,7 +435,7 @@ The response returns an ID used in the webhook's unique URL. Use this URL to upd
     "updated_at": "2020-03-22T17:45:20.742Z",
     "created_at": "2020-03-22T17:45:20.746Z"
   },
-  "url": "https://api.hookdeck.io/web_12n4ffxk8aayze2"
+  "url": "https://events.hookdeck.io/e/web_12n4ffxk8aayze2"
 }
 ```
 
@@ -540,7 +540,7 @@ The parameter `archived_at`is updated
     "updated_at": "2020-03-27T14:50:30.690Z",
     "created_at": "2020-03-27T14:50:30.688Z"
   },
-  "url": "https://api.hookdeck.io/web_12n4ffxk8aayze2"
+  "url": "https://events.hookdeck.io/e/web_12n4ffxk8aayze2"
 }
 ```
 

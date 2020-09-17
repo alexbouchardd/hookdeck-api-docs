@@ -11,7 +11,7 @@ PUT      /rulesets/:id/archive
 PUT      /rulesets/:id/unarchive
 ```
 
-Ruleset objects allows you to set an automaic retry logic for a specific combination of source and destination.
+Ruleset objects allows you to set an automaic retry logic and alert strategy for a specific combination of source and destination.
 
 ## Ruleset object
 
@@ -28,7 +28,9 @@ Ruleset objects allows you to set an automaic retry logic for a specific combina
   "is_team_default": true,
   "archived_at": null,
   "updated_at": "2020-03-22T17:45:20.742Z",
-  "created_at": "2020-03-22T17:45:20.746Z"
+  "created_at": "2020-03-22T17:45:20.746Z",
+  "alert_interval": 3600000,
+  "alert_strategy": "last_attempt"
 }
 ```
 
@@ -48,53 +50,58 @@ When a webhook is created without a ruleset, the default ruleset is applied. Opt
 | archived_at     | `date`    | `null`              | Date the ruleset was archived           |
 | updated_at      | `date`    |                     | Last `ISO Date` the ruleset was updated |
 | created_at      | `date`    |                     | Date the ruleset was created            |
+| alert interval  | `integer` | `3600000`           | Time interval between alerts in ms      |
+| alert strategy  | `string`  | `last_attempt`      | Alert strategy for the ruleset          |
 
 ## Retrieve all rulesets
 
 > The command returns JSON structured like this
 
 ```json
-  {
 {
-    "pagination": {
-        "order_by": "created_at",
-        "order_direction": "desc",
-        "limit": 100,
-        "after": "rls_5b3mzbxk83c0k89",
-        "before": "rls_1b69dxk891v0g0"
+  "pagination": {
+    "order_by": "created_at",
+    "order_direction": "desc",
+    "limit": 100,
+    "after": "rls_5b3mzbxk83c0k89",
+    "before": "rls_1b69dxk891v0g0"
+  },
+  "total_count": 2,
+  "count": 2,
+  "models": [
+    {
+      "id": "rls_1b69dxk891v0g0",
+      "alias": null,
+      "team_id": "tm_5b3mzbxk83c0k7i",
+      "label": "Ruleset 1",
+      "description": null,
+      "retry_count": 10,
+      "retry_interval": 3600000,
+      "retry_strategy": "linear",
+      "is_team_default": false,
+      "archived_at": null,
+      "updated_at": "2020-03-26T17:50:45.710Z",
+      "created_at": "2020-03-26T17:47:42.725Z",
+      "alert_interval": 3600000,
+      "alert_strategy": "each_attempt"
     },
-    "total_count": 2,
-    "count": 2,
-    "models": [
-        {
-            "id": "rls_1b69dxk891v0g0",
-            "alias": null,
-            "team_id": "tm_5b3mzbxk83c0k7i",
-            "label": "Ruleset 1",
-            "description": null,
-            "retry_count": 10,
-            "retry_interval": 3600000,
-            "retry_strategy": "linear",
-            "is_team_default": false,
-            "archived_at": null,
-            "updated_at": "2020-03-26T17:50:45.710Z",
-            "created_at": "2020-03-26T17:47:42.725Z"
-        },
-        {
-            "id": "rls_5b3mzbxk83c0k89",
-            "alias": null,
-            "team_id": "tm_5b3mzbxk83c0k7i",
-            "label": "Default Ruleset",
-            "description": null,
-            "retry_count": 5,
-            "retry_interval": 3600000,
-            "retry_strategy": "linear",
-            "is_team_default": true,
-            "archived_at": null,
-            "updated_at": "2020-03-22T17:45:20.742Z",
-            "created_at": "2020-03-22T17:45:20.746Z"
-        }
-    ]
+    {
+      "id": "rls_5b3mzbxk83c0k89",
+      "alias": null,
+      "team_id": "tm_5b3mzbxk83c0k7i",
+      "label": "Default Ruleset",
+      "description": null,
+      "retry_count": 5,
+      "retry_interval": 3600000,
+      "retry_strategy": "linear",
+      "is_team_default": true,
+      "archived_at": null,
+      "updated_at": "2020-03-22T17:45:20.742Z",
+      "created_at": "2020-03-22T17:45:20.746Z",
+      "alert_interval": 3600000,
+      "alert_strategy": "last_attempt"
+    }
+  ]
 }
 ```
 
@@ -106,9 +113,9 @@ This endpoint retrieves all rulesets.
 
 ### Query Parameter
 
-| Parameter | Type      | Description                                 |
-| --------- | --------- | ------------------------------------------- |
-| archived  | `boolean` | Include the archived ressources in response |
+| Parameter | Type      | Description                                |
+| --------- | --------- | ------------------------------------------ |
+| archived  | `boolean` | Include the archived resources in response |
 
 ## Retrieve a ruleset
 
@@ -127,7 +134,9 @@ This endpoint retrieves all rulesets.
   "is_team_default": false,
   "archived_at": null,
   "updated_at": "2020-03-26T17:50:45.710Z",
-  "created_at": "2020-03-26T17:47:42.725Z"
+  "created_at": "2020-03-26T17:47:42.725Z",
+  "alert_interval": 3600000,
+  "alert_strategy": "each_attempt"
 }
 ```
 
@@ -156,7 +165,9 @@ This endpoint retrieves a specific ruleset.
   "retry_count": 5,
   "retry_interval": 7200000,
   "team_id": "tm_5b3mzbxk83c0k7i",
-  "created_at": "2020-03-26T17:53:41.135Z"
+  "created_at": "2020-03-26T17:53:41.135Z",
+  "alert_interval": 3600000,
+  "alert_strategy": "last_attempt"
 }
 ```
 
@@ -166,13 +177,15 @@ This endpoint creates a ruleset.
 
 `POST https://api.hookdeck.io/ruleset/`
 
-| Parameter      | Type      | Description                         |
-| -------------- | --------- | ----------------------------------- |
-| alias          | `string`  | Alternate name for the ruleset      |
-| label          | `string`  | Name of the ruleset                 |
-| description    | `string`  | Description of the ruleset          |
-| retry_count    | `integer` | Number of retry attempts            |
-| retry_interval | `integer` | Time interval between retries in ms |
+| Parameter      | Type      | Description                                                         |
+| -------------- | --------- | ------------------------------------------------------------------- |
+| alias          | `string`  | Alternate name for the ruleset                                      |
+| label          | `string`  | Name of the ruleset                                                 |
+| description    | `string`  | Description of the ruleset                                          |
+| retry_count    | `integer` | Number of retry attempts                                            |
+| retry_interval | `integer` | Time interval between retries in ms                                 |
+| alert interval | `integer` | Time interval between alerts in ms                                  |
+| alert strategy | `string`  | Alert strategy for the ruleset (null, each_attempt or last_attempt) |
 
 ## Update a ruleset
 
@@ -191,7 +204,9 @@ This endpoint creates a ruleset.
   "is_team_default": false,
   "archived_at": null,
   "updated_at": "2020-03-26T20:21:35.975Z",
-  "created_at": "2020-03-26T17:53:41.135Z"
+  "created_at": "2020-03-26T17:53:41.135Z",
+  "alert_interval": 3600000,
+  "alert_strategy": "last_attempt"
 }
 ```
 
@@ -209,29 +224,41 @@ This endpoint updates a ruleset.
 
 ### Body Parameters
 
-| Parameter      | Type      | Description                         |
-| -------------- | --------- | ----------------------------------- |
-| alias          | `string`  | Alternate name for the ruleset      |
-| label          | `string`  | Name of the ruleset                 |
-| description    | `string`  | Description of the ruleset          |
-| retry_count    | `integer` | Number of retry attempts            |
-| retry_interval | `integer` | Time interval between retries in ms |
+| Parameter      | Type      | Description                                                         |
+| -------------- | --------- | ------------------------------------------------------------------- |
+| alias          | `string`  | Alternate name for the ruleset                                      |
+| label          | `string`  | Name of the ruleset                                                 |
+| description    | `string`  | Description of the ruleset                                          |
+| retry_count    | `integer` | Number of retry attempts                                            |
+| retry_interval | `integer` | Time interval between retries in ms                                 |
+| alert interval | `integer` | Time interval between alerts in ms                                  |
+| alert strategy | `string`  | Alert strategy for the ruleset (null, each_attempt or last_attempt) |
 
-## Archive a ruleset TO BE UPDATED
+<aside class="notice">
+If alert_strategy is null, alerts are disabled.
+If alert_interval is null then you might receive a lot of alerts...
+</aside>
+
+## Archive a ruleset
 
 > The command returns JSON structured like this
 
 ```json
 {
-  "id": "des_1b69dxk890yel0",
+  "id": "rls_1b69dxk8922ozz",
+  "alias": "Ruleset number 2",
   "team_id": "tm_5b3mzbxk83c0k7i",
-  "label": "My API 3",
-  "alias": null,
-  "description": "Our Intercom dev environement",
-  "url": "https://example.com/webhook",
-  "archived_at": "2020-03-26T17:27:19.529Z",
-  "updated_at": "2020-03-26T17:27:19.530Z",
-  "created_at": "2020-03-26T17:22:21.398Z"
+  "label": "Ruleset 2",
+  "description": "Wait 2 minutes",
+  "retry_count": 5,
+  "retry_interval": 7200000,
+  "retry_strategy": "linear",
+  "is_team_default": false,
+  "archived_at": "2020-03-27T20:21:35.975Z",
+  "updated_at": "2020-03-27T20:21:35.975Z",
+  "created_at": "2020-03-26T17:53:41.135Z",
+  "alert_interval": 3600000,
+  "alert_strategy": "last_attempt"
 }
 ```
 
@@ -257,8 +284,8 @@ The parameter `archived_at`is updated
 
 ```json
 {
-  "id": "rls_12n4ffxk897h4ld",
-  "alias": null,
+  "id": "rls_1b69dxk8922ozz",
+  "alias": "Ruleset number 2",
   "team_id": "tm_5b3mzbxk83c0k7i",
   "label": "Ruleset 2",
   "description": "Wait 2 minutes",
@@ -267,8 +294,10 @@ The parameter `archived_at`is updated
   "retry_strategy": "linear",
   "is_team_default": false,
   "archived_at": null,
-  "updated_at": "2020-03-26T20:29:58.912Z",
-  "created_at": "2020-03-26T20:24:52.609Z"
+  "updated_at": "2020-03-27T20:21:36.975Z",
+  "created_at": "2020-03-26T17:53:41.135Z",
+  "alert_interval": 3600000,
+  "alert_strategy": "last_attempt"
 }
 ```
 

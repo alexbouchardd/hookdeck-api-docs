@@ -87,9 +87,9 @@ This endpoint retrieves all unarchived sources.
 
 ### Query Parameter
 
-| Parameter | Type      | Description                                 |
-| --------- | --------- | ------------------------------------------- |
-| archived  | `boolean` | Include the archived ressources in response |
+| Parameter | Type      | Description                                |
+| --------- | --------- | ------------------------------------------ |
+| archived  | `boolean` | Include the archived resources in response |
 
 ## Retrieve a source
 

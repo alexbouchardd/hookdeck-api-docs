@@ -34,10 +34,10 @@ Destination objects allows you to receive webhooks to your systems.
 | id          | `string`   |         | Destination ID                              |
 | team_id     | `string`   |         | Deck ID                                     |
 | label       | `string`   |         | Name of the destination                     |
-| alias       | `string`   | `null`    | Alternate name for the destination          |
-| description | `string`   | `null`    | Description of the destination              |
+| alias       | `string`   | `null`  | Alternate name for the destination          |
+| description | `string`   | `null`  | Description of the destination              |
 | url         | `url`      |         | Endpoint of the destination                 |
-| archived_at | `ISO Date` | `null`    | Date the destination was archived           |
+| archived_at | `ISO Date` | `null`  | Date the destination was archived           |
 | updated_at  | `ISO Date` |         | Last `ISO Date` the destination was updated |
 | created_at  | `ISO Date` |         | Date the destination was created            |
 
@@ -91,9 +91,9 @@ This endpoint retrieves all destinations.
 
 ### Query Parameter
 
-| Parameter | Type      | Description                                 |
-| --------- | --------- | ------------------------------------------- |
-| archived  | `boolean` | Include the archived ressources in response |
+| Parameter | Type      | Description                                |
+| --------- | --------- | ------------------------------------------ |
+| archived  | `boolean` | Include the archived resources in response |
 
 ## Retrieve a destination
 

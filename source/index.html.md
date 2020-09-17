@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://hookdeck.io/signin'>Sign Up for a Developer Key</a>
-  - <a href='https://https://spectrum.chat/hookdeck?tab=chat'>Ask a question</a>
+  - <a href='https://spectrum.chat/hookdeck?tab=chat'>Ask a question</a>
 
 includes:
   - sources
@@ -41,8 +41,8 @@ It won't come as a surprise the first step to create your account at [https://ho
 > Use Basic Authentication to authorize your request. The username is your API Key and the password is blank:
 
 ```shell
-curl "https://api.hookdeck.io/" \
-  -H "Content-Type: application/json" \
+curl "https://api.hookdeck.io/me"
+  -H "Content-Type: application/json"
   -u "${YOUR_API_KEY}:"
 ```
 
@@ -85,13 +85,20 @@ A destination is a representation of your own API where the webhooks will be del
 
 ### Rulesets
 
-A ruleset is a reusable set of configuration to set the retry logic for any event associated with a webhook. The retry logic has 2 params:
+A ruleset is a reusable set of configuration to set the retry logic and alert logic for any event associated with a webhook.
+
+The retry logic has 2 params:
 
 - Retry count `retries_count` is the maximum number of automatic retry that will be attempted. As soon as an event attempt receives a `2xx` status, no other attempts will be made
 - Retries interval `retries_interval` is the delays in milliseconds between retry. Retries are always rounded to the nearest minute (therefore the minimum delay is 60000ms).
 
+The alert logic has 2 params:
+
+- Alert strategy `alert_strategy` is the rule for failed attempt alerts. Based on the chosen strategy, you can receive an email alert for each failed attempts, last failed attempt at the end of the retry logic, or you can disable alerts.
+- Alert interval `alert_interval` is the delays in milliseconds between alerts. Alerts are always rounded to the nearest minute (therefore the minimum delay is 60000ms).
+
 <aside class="notice">
-Each new account comes with a 'Default Ruleset' that is automatically added to any webhook without a manually associated ruleset. The 'Default Ruleset' has a `retries_count` of `5` and a `retries_interval` of `3600000` (one hour). Therefore, any webhook will be default ruleset will be retried up to 5 times over a 5 hour period.
+Each new account comes with a 'Default Ruleset' that is automatically added to any webhook without a manually associated ruleset. The 'Default Ruleset' has a `retries_count` of `5`, a `retries_interval` of `3600000` (one hour), a `alert_strategy` of `last_attempt`, and a `alert_interval` of `3600000` (one hour). Therefore, any webhook will be default ruleset will be retried up to 5 times over a 5 hour period then send an email alert if the last retry attempt is a failure.
 </aside>
 
 ## Create your first webhook
@@ -153,7 +160,9 @@ curl "POST https://api.hookdeck.io/webhooks" \
     "is_team_default": true,
     "archived_at": null,
     "updated_at": "2020-03-22T01:00:37.647Z",
-    "created_at": "2020-03-22T01:00:37.647Z"
+    "created_at": "2020-03-22T01:00:37.647Z",
+    "alert_interval": null,
+    "alert_strategy": null
   },
   "source": {
     "id": "src_xxxxxxxxxxxxxxx",
@@ -164,11 +173,12 @@ curl "POST https://api.hookdeck.io/webhooks" \
     "archived_at": null,
     "updated_at": "2020-03-22T01:07:38.155Z",
     "created_at": "2020-03-22T01:07:38.150Z"
-  }
+  },
+  "url": "https://events.hookdeck.io/e/web_xxxxxxxxxxxxxxx"
 }
 ```
 
-> Example reusing a ressource
+> Example reusing a resource
 
 ```json
 {
@@ -179,34 +189,68 @@ curl "POST https://api.hookdeck.io/webhooks" \
 }
 ```
 
-When you create your first webhook, you can pass a `destination` and `source` definition. Along with the request, all the required ressources will be created. When a webhook is created without a `ruleset`, the default ruleset is applied.
+When you create your first webhook, you can pass a `destination` and `source` definition. Along with the request, all the required resources will be created. When a webhook is created without a `ruleset`, the default ruleset is applied.
 
 ### Mandatory parameters
 
 **Webhook**
 
-| Parameter | Type  | Description         |
-| --------- | ------ | ------------------- |
+| Parameter | Type     | Description         |
+| --------- | -------- | ------------------- |
 | label     | `string` | Name of the webhook |
 
 **Source**
 
-| Parameter | Type  | Description        |
-| --------- | ------ | ------------------ |
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
 | label     | `string` | Name of the source |
 
 **Destination**
 
-| Parameter | Type  | Description                 |
-| --------- | ------ | --------------------------- |
+| Parameter | Type     | Description                 |
+| --------- | -------- | --------------------------- |
 | label     | `string` | Name of the destination     |
-| url       | url    | Endpoint of the destination |
+| url       | url      | Endpoint of the destination |
 
 The body returns an ID for the source, destination and ruleset generated for the webhook. They can be reused by passing the `destination_id`, `source_id` or `ruleset_id` instead of an object.
 
 <aside class="notice">
 The API currently only supports `application/json` for both input and output. Header is optional.
 </aside>
+
+## Update your endpoint
+
+> Example returned body
+
+```json
+{
+  "id": "web_xxxxxxxxxxxxxxx",
+  "label": "Shopify to My API",
+  "alias": null,
+  "team_id": "tm_xxxxxxxxxxxxxxx",
+  "archived_at": null,
+  "updated_at": "2020-03-22T01:07:38.162Z",
+  "created_at": "2020-03-22T01:07:38.161Z",
+  "destination": {
+    ...
+  },
+  "ruleset": {
+    ...
+  },
+  "source": {
+   ...
+  },
+  "url": "https://events.hookdeck.io/e/web_xxxxxxxxxxxxxxx"
+}
+```
+
+Update the endpoint on your systems with the webhook's unique `url`.
+
+**Webhook URL**
+
+| Parameter | Type     | Description                      |
+| --------- | -------- | -------------------------------- |
+| url       | `string` | Unique webhook URL from Hookdeck |
 
 ## Monitoring
 

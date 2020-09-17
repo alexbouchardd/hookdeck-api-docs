@@ -1,102 +1,104 @@
-#  Webhooks
+# Webhooks
 
 > Endpoints
 
 ```
-GET      /webhooks             
-GET      /webhooks/:id                   
-POST     /webhooks                
-PUT      /webhooks/:id                   
-PUT      /webhooks/:id/archive                   
-PUT      /webhooks/:id/unarchive                   
+GET      /webhooks
+GET      /webhooks/:id
+POST     /webhooks
+PUT      /webhooks/:id
+PUT      /webhooks/:id/archive
+PUT      /webhooks/:id/unarchive
 ```
 
 Webhook objects allows you to proxy a source, a destination and a ruleset.
 
 ## Webhook object
 
-```json 
+```json
 {
-     "id": "web_5b3mzbxk83c8qml",
-     "label": "Shopify to My API",
-     "alias": null,
-     "team_id": "tm_5b3mzbxk83c0k7i",
-     "archived_at": null,
-     "updated_at": "2020-03-22T17:51:42.286Z",
-     "created_at": "2020-03-22T17:51:42.290Z",
+  "id": "web_5b3mzbxk83c8qml",
+  "label": "Shopify to My API",
+  "alias": null,
+  "team_id": "tm_5b3mzbxk83c0k7i",
+  "archived_at": null,
+  "updated_at": "2020-03-22T17:51:42.286Z",
+  "created_at": "2020-03-22T17:51:42.290Z"
 }
 ```
 
-| Parameter      | Type     | Default    |Description                                 |
-| -------------- | --------- | -----------|------------------------------------------- |
-|  id            | `string`   |            | Webhook ID                   |
-|  label         | `string`   |            | Name of the webhook                |
-|  alias         | `string`   | `null`       | Alternate name for the webhook             ||  team_id       | `string`   |            | Deck ID                    |
-|  archived_at   | `ISO Date`      | `null`       | Date the webhook was archived         |
-|  updated_at    | `ISO Date`      |            | Last `ISO Date` the webhook was updated        |
-|  created_at    | `ISO Date`      |            |Date the webhook was created         |
+| Parameter   | Type       | Default | Description                             |
+| ----------- | ---------- | ------- | --------------------------------------- |
+| id          | `string`   |         | Webhook ID                              |
+| label       | `string`   |         | Name of the webhook                     |
+| alias       | `string`   | `null`  | Alternate name for the webhook          |  | team_id | `string` |  | Deck ID |
+| archived_at | `ISO Date` | `null`  | Date the webhook was archived           |
+| updated_at  | `ISO Date` |         | Last `ISO Date` the webhook was updated |
+| created_at  | `ISO Date` |         | Date the webhook was created            |
+| url         | `string`   |         | Unique webhook URL from Hookdeck        |
 
 ## Retrieve all webhooks
 
 > The command returns JSON structured like this
 
-```json 
-  {
-    "pagination": {
-        "order_by": "created_at",
-        "order_direction": "desc",
-        "limit": 100,
-        "after": "web_5b3mzbxk83c8qml",
-        "before": "web_5b3mzbxk83dcij0"
-    },
-    "total_count": 1,
-    "count": 1,
-    "models": [
-        {
-            "id": "web_5b3mzbxk83c8qml",
-            "label": "Shopify to My API",
-            "alias": null,
-            "team_id": "tm_5b3mzbxk83c0k7i",
-            "archived_at": null,
-            "updated_at": "2020-03-22T17:51:42.286Z",
-            "created_at": "2020-03-22T17:51:42.290Z",
-            "source": {
-                "id": "src_5b3mzbxk83c8qky",
-                "team_id": "tm_5b3mzbxk83c0k7i",
-                "label": "Shopify",
-                "alias": null,
-                "description": null,
-                "archived_at": null,
-                "updated_at": "2020-03-22T17:51:42.229Z",
-                "created_at": "2020-03-22T17:51:42.231Z"
-            },
-            "destination": {
-                "id": "des_5b3mzbxk83c8qkr",
-                "team_id": "tm_5b3mzbxk83c0k7i",
-                "label": "My API",
-                "alias": null,
-                "description": null,
-                "url": "https://example.com/webhook",
-                "archived_at": null,
-                "updated_at": "2020-03-22T17:51:42.228Z",
-                "created_at": "2020-03-22T17:51:42.231Z"
-            },
-            "ruleset": {
-                "id": "rls_5b3mzbxk83c0k89",
-                "alias": null,
-                "team_id": "tm_5b3mzbxk83c0k7i",
-                "label": "Default Ruleset",
-                "description": null,
-                "retry_count": 5,
-                "retry_interval": 3600000,
-                "retry_strategy": "linear",
-                "is_team_default": true,
-                "archived_at": null,
-                "updated_at": "2020-03-22T17:45:20.742Z",
-                "created_at": "2020-03-22T17:45:20.746Z"
-            }
-        }
-    ]
+```json
+{
+  "pagination": {
+    "order_by": "created_at",
+    "order_direction": "desc",
+    "limit": 100,
+    "after": "web_5b3mzbxk83c8qml",
+    "before": "web_5b3mzbxk83dcij0"
+  },
+  "total_count": 1,
+  "count": 1,
+  "models": [
+    {
+      "id": "web_5b3mzbxk83c8qml",
+      "label": "Shopify to My API",
+      "alias": null,
+      "team_id": "tm_5b3mzbxk83c0k7i",
+      "archived_at": null,
+      "updated_at": "2020-03-22T17:51:42.286Z",
+      "created_at": "2020-03-22T17:51:42.290Z",
+      "source": {
+        "id": "src_5b3mzbxk83c8qky",
+        "team_id": "tm_5b3mzbxk83c0k7i",
+        "label": "Shopify",
+        "alias": null,
+        "description": null,
+        "archived_at": null,
+        "updated_at": "2020-03-22T17:51:42.229Z",
+        "created_at": "2020-03-22T17:51:42.231Z"
+      },
+      "destination": {
+        "id": "des_5b3mzbxk83c8qkr",
+        "team_id": "tm_5b3mzbxk83c0k7i",
+        "label": "My API",
+        "alias": null,
+        "description": null,
+        "url": "https://example.com/webhook",
+        "archived_at": null,
+        "updated_at": "2020-03-22T17:51:42.228Z",
+        "created_at": "2020-03-22T17:51:42.231Z"
+      },
+      "ruleset": {
+        "id": "rls_5b3mzbxk83c0k89",
+        "alias": null,
+        "team_id": "tm_5b3mzbxk83c0k7i",
+        "label": "Default Ruleset",
+        "description": null,
+        "retry_count": 5,
+        "retry_interval": 3600000,
+        "retry_strategy": "linear",
+        "is_team_default": true,
+        "archived_at": null,
+        "updated_at": "2020-03-22T17:45:20.742Z",
+        "created_at": "2020-03-22T17:45:20.746Z"
+      },
+      "url": "https://events.hookdeck.io/e/web_5b3mzbxk83c8qml"
+    }
+  ]
 }
 ```
 
@@ -108,15 +110,15 @@ This endpoint retrieves all webhooks.
 
 ### Query Parameter
 
-| Parameter | Type      | Description                                 |
-| --------- | --------- | ------------------------------------------- |
-| archived  | `boolean` | Include the archived ressources in response |
+| Parameter | Type      | Description                                |
+| --------- | --------- | ------------------------------------------ |
+| archived  | `boolean` | Include the archived resources in response |
 
 ## Retrieve a webhook
 
 > The command returns JSON structured like this
 
-```json 
+```json
 {
     "id": "web_5b3mzbxk83c8qml",
     "label": "Shopify to My API",
@@ -159,7 +161,8 @@ This endpoint retrieves all webhooks.
         "archived_at": null,
         "updated_at": "2020-03-22T17:45:20.742Z",
         "created_at": "2020-03-22T17:45:20.746Z"
-    }
+    },
+    "url": "https://events.hookdeck.io/e/web_12n4ffxk8aayze2"
 ```
 
 This endpoint retrieves a specific webhook.
@@ -170,15 +173,15 @@ This endpoint retrieves a specific webhook.
 
 ### URL Parameter
 
-| Parameter      | Description                                  |
-| -------------- | -------------------------------------------- |
-|  id            | Webhook ID                   |
+| Parameter | Description |
+| --------- | ----------- |
+| id        | Webhook ID  |
 
 ## Create a webhook with an undefined destination, source and ruleset
 
 > The command returns JSON structured like this
 
-```json 
+```json
     //Request
 {
 	"label": "Github to My API",
@@ -233,7 +236,8 @@ This endpoint retrieves a specific webhook.
         "archived_at": null,
         "updated_at": "2020-03-22T17:45:20.742Z",
         "created_at": "2020-03-22T17:45:20.746Z"
-    }
+    },
+    "url": "https://events.hookdeck.io/e/web_12n4ffxk8aayze2"
 }
 ```
 
@@ -241,46 +245,55 @@ This endpoint creates a webhook.
 
 ### HTTP Request
 
-`POST https://api.hookdeck.io/webhook/`
+`POST https://api.hookdeck.io/webhooks/`
 
 **Webhook**
-| Parameter      | Default   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  label         | `string`   | Name of the webhook                |
-|  alias         | `string`   | Alternate name for the webhook          |   
 
-**Source** 
+| Parameter | Default  | Description                    |
+| --------- | -------- | ------------------------------ |
+| label     | `string` | Name of the webhook            |
+| alias     | `string` | Alternate name for the webhook |
 
-| Parameter      | Default   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  label         |     | Name of the source                    |
-|  alias         | `null`   | Alternate name for the source                 |
-|  description   | `null`    | Description of the source                  |
+**Source**
+
+| Parameter   | Default | Description                   |
+| ----------- | ------- | ----------------------------- |
+| label       |         | Name of the source            |
+| alias       | `null`  | Alternate name for the source |
+| description | `null`  | Description of the source     |
 
 **Destination**
 
-| Parameter      | Default   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  label         |  `string`  | Name of the destination                    |
-|  alias         | `string`   | Alternate name for the destination                 |
-|  description   | `string`   | Description of the destination                  |
-|  url           | url       | Endpoint of the destination                  |
+| Parameter   | Default  | Description                        |
+| ----------- | -------- | ---------------------------------- |
+| label       | `string` | Name of the destination            |
+| alias       | `string` | Alternate name for the destination |
+| description | `string` | Description of the destination     |
+| url         | url      | Endpoint of the destination        |
 
-**Ruleset (optional)** 
+**Ruleset (optional)**
 
-| Parameter      | Default   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  alias         | `string`   | Alternate name for the ruleset          |   
-|  label         | `string`   |  Name of the ruleset                |
-|  description   | `string`   | Description of the ruleset          |
-|  retry_count   | integer   |  Number of retry attempts         |
-|  retry_interval| integer   | Time interval between retries in ms    |
+| Parameter      | Default  | Description                         |
+| -------------- | -------- | ----------------------------------- |
+| alias          | `string` | Alternate name for the ruleset      |
+| label          | `string` | Name of the ruleset                 |
+| description    | `string` | Description of the ruleset          |
+| retry_count    | integer  | Number of retry attempts            |
+| retry_interval | integer  | Time interval between retries in ms |
+
+**Response**
+
+The response returns an ID used in the webhook's unique URL. Use this URL to update the endpoint on your systems.
+
+| Parameter | Default  | Description                      |
+| --------- | -------- | -------------------------------- |
+| url       | `string` | Unique webhook URL from Hookdeck |
 
 ## Create a webhook with destination ID, source ID and ruleset ID
 
 > The command returns JSON structured like this
 
-```json 
+```json
     //Request
 {
 	"label": "Stripe to My API",
@@ -331,7 +344,8 @@ This endpoint creates a webhook.
          "archived_at": null,
          "updated_at": "2020-03-22T17:45:20.742Z",
          "created_at": "2020-03-22T17:45:20.746Z"
-    }
+    },
+    "url": "https://events.hookdeck.io/e/web_5b3mzbxk83dcij0"
 }
 ```
 
@@ -339,81 +353,89 @@ This endpoint creates a webhook.
 
 ### HTTP Request
 
-`POST https://api.hookdeck.io/webhook/`
+`POST https://api.hookdeck.io/webhooks/`
 
 **Webhook**
-| Parameter      | Type   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  label         | `string`   | Name of the webhook                |
 
-**Source** 
+| Parameter | Type     | Description         |
+| --------- | -------- | ------------------- |
+| label     | `string` | Name of the webhook |
 
-| Parameter      | Type   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  id            | `string`   | Source ID                      |
+**Source**
 
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| id        | `string` | Source ID   |
 
 **Destination**
 
-| Parameter      | Type   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  id            | `string`  | Destination ID                      |
+| Parameter | Type     | Description    |
+| --------- | -------- | -------------- |
+| id        | `string` | Destination ID |
 
-**Ruleset (optional)** 
+**Ruleset (optional)**
 
-| Parameter      | Default   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  id            | `string`   | Ruleset ID                      |
+| Parameter | Default  | Description |
+| --------- | -------- | ----------- |
+| id        | `string` | Ruleset ID  |
 
+**Response**
+
+The response returns an ID used in the webhook's unique URL. Use this URL to update the endpoint on your systems.
+
+| Parameter | Default  | Description                      |
+| --------- | -------- | -------------------------------- |
+| url       | `string` | Unique webhook URL from Hookdeck |
 
 ## Update a webhook
 
 > The command returns JSON structured like this
 
-```json 
+```json
 {
-    "id": "web_12n4ffxk8aayze2",
-    "label": "Github (test) hook",
+  "id": "web_12n4ffxk8aayze2",
+  "label": "Github (test) hook",
+  "alias": null,
+  "team_id": "tm_5b3mzbxk83c0k7i",
+  "archived_at": null,
+  "updated_at": "2020-03-27T15:43:03.535Z",
+  "created_at": "2020-03-27T14:50:30.701Z",
+  "destination": {
+    "id": "des_12n4ffxk8aayzdb",
+    "team_id": "tm_5b3mzbxk83c0k7i",
+    "label": "My API",
+    "alias": null,
+    "description": null,
+    "url": "http://localhost:9000/attempt_test",
+    "archived_at": null,
+    "updated_at": "2020-03-27T14:50:30.689Z",
+    "created_at": "2020-03-27T14:50:30.688Z"
+  },
+  "source": {
+    "id": "src_12n4ffxk8aayzdp",
+    "team_id": "tm_5b3mzbxk83c0k7i",
+    "label": "Github",
+    "alias": null,
+    "description": null,
+    "archived_at": null,
+    "updated_at": "2020-03-27T14:50:30.690Z",
+    "created_at": "2020-03-27T14:50:30.688Z"
+  },
+  "ruleset": {
+    "id": "rls_5b3mzbxk83c0k89",
     "alias": null,
     "team_id": "tm_5b3mzbxk83c0k7i",
+    "label": "Default Ruleset",
+    "description": null,
+    "retry_count": 5,
+    "retry_interval": 3600000,
+    "retry_strategy": "linear",
+    "is_team_default": true,
     "archived_at": null,
-    "updated_at": "2020-03-27T15:43:03.535Z",
-    "created_at": "2020-03-27T14:50:30.701Z",
-    "destination": {
-        "id": "des_12n4ffxk8aayzdb",
-        "team_id": "tm_5b3mzbxk83c0k7i",
-        "label": "My API",
-        "alias": null,
-        "description": null,
-        "url": "http://localhost:9000/attempt_test",
-        "archived_at": null,
-        "updated_at": "2020-03-27T14:50:30.689Z",
-        "created_at": "2020-03-27T14:50:30.688Z"
-    },
-    "source": {
-        "id": "src_12n4ffxk8aayzdp",
-        "team_id": "tm_5b3mzbxk83c0k7i",
-        "label": "Github",
-        "alias": null,
-        "description": null,
-        "archived_at": null,
-        "updated_at": "2020-03-27T14:50:30.690Z",
-        "created_at": "2020-03-27T14:50:30.688Z"
-    },
-    "ruleset": {
-        "id": "rls_5b3mzbxk83c0k89",
-        "alias": null,
-        "team_id": "tm_5b3mzbxk83c0k7i",
-        "label": "Default Ruleset",
-        "description": null,
-        "retry_count": 5,
-        "retry_interval": 3600000,
-        "retry_strategy": "linear",
-        "is_team_default": true,
-        "archived_at": null,
-        "updated_at": "2020-03-22T17:45:20.742Z",
-        "created_at": "2020-03-22T17:45:20.746Z"
-    }
+    "updated_at": "2020-03-22T17:45:20.742Z",
+    "created_at": "2020-03-22T17:45:20.746Z"
+  },
+  "url": "https://events.hookdeck.io/e/web_12n4ffxk8aayze2"
 }
 ```
 
@@ -421,36 +443,36 @@ This endpoint updates a webhook.
 
 ### HTTP Request
 
-`PUT https://api.hookdeck.io/webhook/:id`
+`PUT https://api.hookdeck.io/webhooks/:id`
 
 ### URL Parameter
 
-| Parameter      | Description                                  |
-| -------------- | -------------------------------------------- |
-|  id            | Webhook ID                   |
+| Parameter | Description |
+| --------- | ----------- |
+| id        | Webhook ID  |
 
 ### Body Parameters
 
-| Parameter      | Default   | Description                                  |
-| -------------- | --------- | -------------------------------------------- |
-|  label         | `string`   | Name of the webhook                |
-|  alias         | `string`   | Alternate name for the webhook          |   
+| Parameter | Default  | Description                    |
+| --------- | -------- | ------------------------------ |
+| label     | `string` | Name of the webhook            |
+| alias     | `string` | Alternate name for the webhook |
 
-## Archive a webhook TO BE UPDATED
+## Archive a webhook
 
 > The command returns JSON structured like this
 
-```json 
+```json
 {
-    "id": "des_1b69dxk890yel0",
-    "team_id": "tm_5b3mzbxk83c0k7i",
-    "label": "My API 3",
-    "alias": null,
-    "description": "Our Intercom dev environement",
-    "url": "https://example.com/webhook",
-    "archived_at": "2020-03-26T17:27:19.529Z",
-    "updated_at": "2020-03-26T17:27:19.530Z",
-    "created_at": "2020-03-26T17:22:21.398Z"
+  "id": "des_1b69dxk890yel0",
+  "team_id": "tm_5b3mzbxk83c0k7i",
+  "label": "My API 3",
+  "alias": null,
+  "description": "Our Intercom dev environement",
+  "url": "https://example.com/webhook",
+  "archived_at": "2020-03-26T17:27:19.529Z",
+  "updated_at": "2020-03-26T17:27:19.530Z",
+  "created_at": "2020-03-26T17:22:21.398Z"
 }
 ```
 
@@ -458,14 +480,13 @@ This endpoint archives a webhook.
 
 ### HTTP Request
 
-`PUT https://api.hookdeck.io/webhook/:id/archive`
+`PUT https://api.hookdeck.io/webhooks/:id/archive`
 
 ### URL Parameter
 
-| Parameter      | Description                                  |
-| -------------- | -------------------------------------------- |
-|  id            | Webhook ID                   |
-
+| Parameter | Description |
+| --------- | ----------- |
+| id        | Webhook ID  |
 
 <aside class="notice">
 The parameter `archived_at`is updated
@@ -475,50 +496,51 @@ The parameter `archived_at`is updated
 
 > The command returns JSON structured like this
 
-```json 
+```json
 {
-    "id": "web_12n4ffxk8aayze2",
-    "label": "Github (test) hook",
+  "id": "web_12n4ffxk8aayze2",
+  "label": "Github (test) hook",
+  "alias": null,
+  "team_id": "tm_5b3mzbxk83c0k7i",
+  "archived_at": null,
+  "updated_at": "2020-03-27T15:44:41.022Z",
+  "created_at": "2020-03-27T14:50:30.701Z",
+  "destination": {
+    "id": "des_12n4ffxk8aayzdb",
+    "team_id": "tm_5b3mzbxk83c0k7i",
+    "label": "My API",
+    "alias": null,
+    "description": null,
+    "url": "http://localhost:9000/attempt_test",
+    "archived_at": null,
+    "updated_at": "2020-03-27T14:50:30.689Z",
+    "created_at": "2020-03-27T14:50:30.688Z"
+  },
+  "ruleset": {
+    "id": "rls_5b3mzbxk83c0k89",
     "alias": null,
     "team_id": "tm_5b3mzbxk83c0k7i",
+    "label": "Default Ruleset",
+    "description": null,
+    "retry_count": 5,
+    "retry_interval": 3600000,
+    "retry_strategy": "linear",
+    "is_team_default": true,
     "archived_at": null,
-    "updated_at": "2020-03-27T15:44:41.022Z",
-    "created_at": "2020-03-27T14:50:30.701Z",
-    "destination": {
-        "id": "des_12n4ffxk8aayzdb",
-        "team_id": "tm_5b3mzbxk83c0k7i",
-        "label": "My API",
-        "alias": null,
-        "description": null,
-        "url": "http://localhost:9000/attempt_test",
-        "archived_at": null,
-        "updated_at": "2020-03-27T14:50:30.689Z",
-        "created_at": "2020-03-27T14:50:30.688Z"
-    },
-    "ruleset": {
-        "id": "rls_5b3mzbxk83c0k89",
-        "alias": null,
-        "team_id": "tm_5b3mzbxk83c0k7i",
-        "label": "Default Ruleset",
-        "description": null,
-        "retry_count": 5,
-        "retry_interval": 3600000,
-        "retry_strategy": "linear",
-        "is_team_default": true,
-        "archived_at": null,
-        "updated_at": "2020-03-22T17:45:20.742Z",
-        "created_at": "2020-03-22T17:45:20.746Z"
-    },
-    "source": {
-        "id": "src_12n4ffxk8aayzdp",
-        "team_id": "tm_5b3mzbxk83c0k7i",
-        "label": "Github",
-        "alias": null,
-        "description": null,
-        "archived_at": null,
-        "updated_at": "2020-03-27T14:50:30.690Z",
-        "created_at": "2020-03-27T14:50:30.688Z"
-    }
+    "updated_at": "2020-03-22T17:45:20.742Z",
+    "created_at": "2020-03-22T17:45:20.746Z"
+  },
+  "source": {
+    "id": "src_12n4ffxk8aayzdp",
+    "team_id": "tm_5b3mzbxk83c0k7i",
+    "label": "Github",
+    "alias": null,
+    "description": null,
+    "archived_at": null,
+    "updated_at": "2020-03-27T14:50:30.690Z",
+    "created_at": "2020-03-27T14:50:30.688Z"
+  },
+  "url": "https://events.hookdeck.io/e/web_12n4ffxk8aayze2"
 }
 ```
 
@@ -526,13 +548,13 @@ This endpoint unarchives a webhook.
 
 ### HTTP Request
 
-`PUT https://api.hookdeck.io/webhook/:id/unarchive`
+`PUT https://api.hookdeck.io/webhooks/:id/unarchive`
 
 ### URL Parameter
 
-| Parameter      | Description                                  |
-| -------------- | -------------------------------------------- |
-|  id            | Webhook ID                   |
+| Parameter | Description |
+| --------- | ----------- |
+| id        | Webhook ID  |
 
 <aside class="notice">
 The parameter `archived_at`becomes null

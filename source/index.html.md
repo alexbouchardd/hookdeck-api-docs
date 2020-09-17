@@ -22,6 +22,8 @@ includes:
   - gethelp
 
 search: true
+
+code_clipboard: true
 ---
 
 # Get Started

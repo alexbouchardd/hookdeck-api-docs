@@ -29,7 +29,7 @@ Attempt objects allow you to monitor the attempts of your events.
 | id           | `string`   |         | Attempt ID                            |
 | team_id      | `string`   |         | Deck ID                               |
 | event_id     | `string`   |         | Event ID                              |
-| sucessful_at | `ISO Date` | `null`    | Date of the successful event          |
+| sucessful_at | `ISO Date` | `null`    | Date of the successful event        |
 | updated_at   | `ISO Date` |         | Last `ISO Date` the event was updated |
 | created_at   | `ISO Date` |         | Date the event was created            |
 
@@ -112,6 +112,8 @@ This endpoint retrieves all attempts.
 ```
 
 This endpoint retrieves a specific attempt.
+
+The attempt with also include the attempt response `body` in `json`.
 
 ### HTTP Request
 

@@ -61,10 +61,10 @@ When a webhook is created without a ruleset, the default ruleset is applied. Opt
 {
   "pagination": {
     "order_by": "created_at",
-    "order_direction": "desc",
+    "dir": "desc",
     "limit": 100,
-    "after": "rls_5b3mzbxk83c0k89",
-    "before": "rls_1b69dxk891v0g0"
+    "next": "rls_5b3mzbxk83c0k89",
+    "prev": "rls_1b69dxk891v0g0"
   },
   "total_count": 2,
   "count": 2,

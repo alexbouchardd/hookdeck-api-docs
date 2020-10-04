@@ -6,10 +6,10 @@
 {
   "pagination": {
     "order_by": "created_at",
-    "order_direction": "desc",
+    "dir": "desc",
     "limit": 100,
-    "after": "web_2urj7h9puxk6obro3x",
-    "before": "web_2urj7h9puxk6obuf6i"
+    "next": "web_2urj7h9puxk6obro3x",
+    "prev": "web_2urj7h9puxk6obuf6i"
   }
 }
 ```
@@ -42,9 +42,13 @@ To work with Keyset paging all the necessary information will be contain in the 
 | Parameter | Default        | Description                                                       |
 | --------- | -------------- | ----------------------------------------------------------------- |
 | order_by  | `"created_at"` | The sortable key to use (options varies base on the resource )    |
-| order_by  | `"desc"`       | The direction to sort it (`"asc"` or `"desc"`)                    |
+| dir       | `"desc"`       | The direction to sort it (`"asc"` or `"desc"`)                    |
 | limit     | `100`          | The making amount of results returned per query (max: `250`)      |
-| after     | `undefined`    | The ID to provide in the query to get the next set of results     |
-| before    | `undefined`    | The ID to provide in the query to get the previous set of results |
+| next      | `undefined`    | The ID to provide in the query to get the next set of results     |
+| prev      | `undefined`    | The ID to provide in the query to get the previous set of results |
 
-Unless you have specified a `order_by` or `order_direction` yourself, you can omit it from the next or previous set query. You only have to carry them over if you are not using the resource default
+Unless you have specified a `order_by` or `dir` yourself, you can omit it from the next or previous set query. You only have to carry them over if you are not using the resource default
+
+<aside class="notice">
+If an event is pending, the keyset will return a truthy value (null) which will cause the pagination to omit null values in the response.   
+</aside>

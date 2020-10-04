@@ -29,7 +29,7 @@ Attempt objects allow you to monitor the attempts of your events.
 | id           | `string`   |         | Attempt ID                            |
 | team_id      | `string`   |         | Deck ID                               |
 | event_id     | `string`   |         | Event ID                              |
-| sucessful_at | `ISO Date` | `null`    | Date of the successful event        |
+| sucessful_at | `ISO Date` | `null`  | Date of the successful event          |
 | updated_at   | `ISO Date` |         | Last `ISO Date` the event was updated |
 | created_at   | `ISO Date` |         | Date the event was created            |
 
@@ -40,10 +40,10 @@ Attempt objects allow you to monitor the attempts of your events.
 ```json
     "pagination": {
         "order_by": "created_at",
-        "order_direction": "desc",
+        "dir": "desc",
         "limit": 100,
-        "after": "atm_5b3mzbxk83cenaj",
-        "before": "atm_12n4ffxk8adnqqj"
+        "next": "atm_5b3mzbxk83cenaj",
+        "prev": "atm_12n4ffxk8adnqqj"
     },
     "total_count": 4,
     "count": 4,

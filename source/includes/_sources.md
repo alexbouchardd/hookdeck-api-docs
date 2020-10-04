@@ -47,10 +47,10 @@ Source objects allow you to define the third party sending the webhook.
 {
   "pagination": {
     "order_by": "created_at",
-    "order_direction": "desc",
+    "dir": "desc",
     "limit": 100,
-    "after": "src_5b3mzbxk83c8qky",
-    "before": "src_5b3mzbxk83dciin"
+    "next": "src_5b3mzbxk83c8qky",
+    "prev": "src_5b3mzbxk83dciin"
   },
   "total_count": 2,
   "count": 2,

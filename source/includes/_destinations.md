@@ -49,10 +49,10 @@ Destination objects allows you to receive webhooks to your systems.
 {
   "pagination": {
     "order_by": "created_at",
-    "order_direction": "desc",
+    "dir": "desc",
     "limit": 100,
-    "after": "des_5b3mzbxk83c8qkr",
-    "before": "des_5b3mzbxk83dciim"
+    "next": "des_5b3mzbxk83c8qkr",
+    "prev": "des_5b3mzbxk83dciim"
   },
   "total_count": 2,
   "count": 2,

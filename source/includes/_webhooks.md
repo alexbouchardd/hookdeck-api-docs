@@ -45,10 +45,10 @@ Webhook objects allows you to proxy a source, a destination and a ruleset.
 {
   "pagination": {
     "order_by": "created_at",
-    "order_direction": "desc",
+    "dir": "desc",
     "limit": 100,
-    "after": "web_5b3mzbxk83c8qml",
-    "before": "web_5b3mzbxk83dcij0"
+    "next": "web_5b3mzbxk83c8qml",
+    "prev": "web_5b3mzbxk83dcij0"
   },
   "total_count": 1,
   "count": 1,

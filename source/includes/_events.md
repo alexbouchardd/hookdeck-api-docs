@@ -39,12 +39,12 @@ Events objects allow you to monitor the events of your webhooks.
 | webhook_id         | `string`   |         | Webhook ID                                         |
 | source_id          | `string`   |         | Source ID                                          |
 | destination_id     | `string`   |         | Destination ID                                     |
-| duplicate_event_id | `string`   | `null`    | If duplicate, shows the ID of the original event   |
+| duplicate_event_id | `string`   | `null`  | If duplicate, shows the ID of the original event   |
 | attempts           | `integer`  | 0       | Number of retries attempted                        |
-| response_status    | `status`   | `null`    | Event status                                       |
-| last_attempt_at    | `ISO Date` | `null`    | Last `ISO Date` a retry was attempted              |
-| next_attempt_at    | `ISO Date` | `null`    | Next `ISO Date` of a scheduled retry               |
-| sucessful_at       | `ISO Date` | `null`    | Date of the successful event                       |
+| response_status    | `status`   | `null`  | Event status                                       |
+| last_attempt_at    | `ISO Date` | `null`  | Last `ISO Date` a retry was attempted              |
+| next_attempt_at    | `ISO Date` | `null`  | Next `ISO Date` of a scheduled retry               |
+| sucessful_at       | `ISO Date` | `null`  | Date of the successful event                       |
 | updated_at         | `ISO Date` |         | Last `ISO Date` the event was updated              |
 | created_at         | `ISO Date` |         | Date the event was created                         |
 
@@ -56,10 +56,10 @@ Events objects allow you to monitor the events of your webhooks.
 {
   "pagination": {
     "order_by": "created_at",
-    "order_direction": "desc",
+    "dir": "desc",
     "limit": 100,
-    "after": "evt_5b3mzbxk83caj7p",
-    "before": "evt_12n4ffxk8admulc"
+    "next": "evt_5b3mzbxk83caj7p",
+    "prev": "evt_12n4ffxk8admulc"
   },
   "total_count": 3,
   "count": 3,

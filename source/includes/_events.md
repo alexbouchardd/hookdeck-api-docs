@@ -120,15 +120,15 @@ This endpoint retrieves all events.
 
 ### Use parameters to retrieve what you need
 
-Examples with HTTP request
+**Examples with HTTP request**
 
-**Retrieve all failed events**  
+Retrieve all failed events  
 `https://api.hookdeck.io/events?response_status[gte]=300`
 
-**Retrieve all successful event**  
+Retrieve all successful event  
 `https://api.hookdeck.io/events?response_status[lt]=300`
 
-**Retrieve events between two dates**  
+Retrieve events between two dates
 `https://api.hookdeck.io/events?created_at[gte]=2020-10-01&created_at[lte]=2020-10-16`
 
 ## Retrieve an event

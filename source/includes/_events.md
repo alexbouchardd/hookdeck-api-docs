@@ -118,80 +118,18 @@ This endpoint retrieves all events.
 
 `GET https://api.hookdeck.io/events`
 
-## Retrieve all failed events
+## Use the parameters to retrieve what you need
 
-> The command returns JSON structured like this
+### Examples with HTTP requests
 
-```json
-{
-  "pagination": {
-    "order_by": "created_at",
-    "dir": "desc",
-    "limit": 100,
-    "next": "evt_5b3mzbxk83caj7p",
-    "prev": "evt_12n4ffxk8admulc"
-  },
-  "total_count": 3,
-  "count": 3,
-  "models": [
-    {
-      "id": "evt_12n4ffxk8admulc",
-      "team_id": "tm_5b3mzbxk83c0k7i",
-      "webhook_id": "web_5b3mzbxk83dcij0",
-      "source_id": "src_5b3mzbxk83dciin",
-      "destination_id": "des_5b3mzbxk83dciim",
-      "duplicate_event_id": null,
-      "attempts": 2,
-      "response_status": 500,
-      "last_attempt_at": "2020-03-27T16:05:45.115Z",
-      "next_attempt_at": "2020-03-27T17:06:00.000Z",
-      "successful_at": null,
-      "updated_at": "2020-03-27T16:05:45.249Z",
-      "created_at": "2020-03-27T16:05:03.468Z"
-    },
-    {
-      "id": "evt_5b3mzbxk83cefs5",
-      "team_id": "tm_5b3mzbxk83c0k7i",
-      "webhook_id": "web_5b3mzbxk83c8qml",
-      "source_id": "src_5b3mzbxk83c8qky",
-      "destination_id": "des_5b3mzbxk83c8qkr",
-      "duplicate_event_id": "evt_5b3mzbxk83cedro",
-      "attempts": 1,
-      "response_status": 500,
-      "last_attempt_at": "2020-03-22T17:56:20.447Z",
-      "next_attempt_at": "2020-03-22T18:56:00.000Z",
-      "successful_at": null,
-      "updated_at": "2020-03-22T17:56:20.540Z",
-      "created_at": "2020-03-22T17:56:08.166Z"
-    },
-    {
-      "id": "evt_5b3mzbxk83cedro",
-      "team_id": "tm_5b3mzbxk83c0k7i",
-      "webhook_id": "web_5b3mzbxk83c8qml",
-      "source_id": "src_5b3mzbxk83c8qky",
-      "destination_id": "des_5b3mzbxk83c8qkr",
-      "duplicate_event_id": null,
-      "attempts": 1,
-      "response_status": 500,
-      "last_attempt_at": "2020-03-22T17:56:17.903Z",
-      "next_attempt_at": "2020-03-22T18:56:00.000Z",
-      "successful_at": null,
-      "updated_at": "2020-03-22T17:56:18.006Z",
-      "created_at": "2020-03-22T17:56:05.556Z"
-    }
-  ]
-}
-```
-
-Retrieve all failed events by querying the successful_at or the response_status parameters.
-
-### HTTP Request
-
-Successful At  
-`GET https://api.hookdeck.io/events?successful_at=null`
-
-Response Status  
+**Retrieve all failed events**  
 `GET https://api.hookdeck.io/events?response_status[gte]=300`
+
+**Retrieve all successful event**  
+`GET https://api.hookdeck.io/events?response_status[lt]=300`
+
+**Retrieve events between two dates**  
+`GET https://api.hookdeck.io/events?created_at[gte]=2020-10-01&created_at[lte]=2020-10-16`
 
 ## Retrieve an event
 

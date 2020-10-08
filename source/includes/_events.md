@@ -120,7 +120,7 @@ This endpoint retrieves all events.
 
 ### Use parameters to retrieve what you need
 
-### Examples with HTTP requests
+Examples with HTTP request
 
 **Retrieve all failed events**  
 `https://api.hookdeck.io/events?response_status[gte]=300`

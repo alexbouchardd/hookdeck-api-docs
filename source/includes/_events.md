@@ -58,6 +58,76 @@ Events objects allow you to monitor the events of your webhooks.
     "order_by": "created_at",
     "dir": "desc",
     "limit": 100,
+    "next": "evt_1pbxk9lh598s"
+  },
+  "total_count": 109,
+  "count": 100,
+  "models": [
+    {
+      "id": "evt_7qw8fv14kfae8pms",
+      "team_id": "tm_fn2y14xk8lu8fg8",
+      "webhook_id": "web_g58mq3xkag1h6k0",
+      "source_id": "src_g58mq3xkag1h69j",
+      "destination_id": "des_g58mq3xkag1h66f",
+      "duplicate_event_id": "evt_clrg0m14kfae1y7f",
+      "attempts": 14,
+      "response_status": null,
+      "last_attempt_at": "2020-09-21T15:59:35.985Z",
+      "next_attempt_at": null,
+      "successful_at": "2020-09-21T15:57:20.044Z",
+      "updated_at": "2020-09-21T16:00:06.053Z",
+      "created_at": "2020-09-20T00:59:59.813Z"
+    },
+    {
+      "id": "evt_7qw8fv14kfae8ozp",
+      "team_id": "tm_fn2y14xk8lu8fg8",
+      "webhook_id": "web_g58mq3xkag1h6k0",
+      "source_id": "src_g58mq3xkag1h69j",
+      "destination_id": "des_g58mq3xkag1h66f",
+      "duplicate_event_id": "evt_clrg0m14kfae1y7f",
+      "attempts": 5,
+      "response_status": null,
+      "last_attempt_at": "2020-09-20T19:28:00.261Z",
+      "next_attempt_at": null,
+      "successful_at": null,
+      "updated_at": "2020-09-20T19:28:30.324Z",
+      "created_at": "2020-09-20T00:59:58.981Z"
+    },
+    {
+      "id": "evt_7qw8fv14kfae8nvz",
+      "team_id": "tm_fn2y14xk8lu8fg8",
+      "webhook_id": "web_g58mq3xkag1h6k0",
+      "source_id": "src_g58mq3xkag1h69j",
+      "destination_id": "des_g58mq3xkag1h66f",
+      "duplicate_event_id": "evt_clrg0m14kfae1y7f",
+      "attempts": 3,
+      "response_status": 202,
+      "last_attempt_at": "2020-09-20T13:03:30.497Z",
+      "next_attempt_at": null,
+      "successful_at": "2020-09-20T13:03:42.618Z",
+      "updated_at": "2020-09-20T13:03:42.634Z",
+      "created_at": "2020-09-20T00:59:57.552Z"
+    }
+  ]
+}
+```
+
+This endpoint retrieves all events.
+
+### HTTP Request
+
+`GET https://api.hookdeck.io/events`
+
+## Retrieve all failed events
+
+> The command returns JSON structured like this
+
+```json
+{
+  "pagination": {
+    "order_by": "created_at",
+    "dir": "desc",
+    "limit": 100,
     "next": "evt_5b3mzbxk83caj7p",
     "prev": "evt_12n4ffxk8admulc"
   },
@@ -113,11 +183,18 @@ Events objects allow you to monitor the events of your webhooks.
 }
 ```
 
-This endpoint retrieves all events.
+Retrieve all failed events by querying the successful_at and the response_status parameters.
 
 ### HTTP Request
 
-`GET https://api.hookdeck.io/events`
+`GET https://api.hookdeck.io/events/`
+
+### URL Parameter
+
+| Parameter       | Query   | Description                           |
+| --------------- | ------- | ------------------------------------- |
+| successful_at   | null    | not sucessful event                   |
+| response_status | gte 300 | events with a status greater than 300 |
 
 ## Retrieve an event
 

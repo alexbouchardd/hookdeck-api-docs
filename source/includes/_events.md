@@ -114,13 +114,13 @@ Events objects allow you to monitor the events of your webhooks.
 
 This endpoint retrieves all events.
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://api.hookdeck.io/events`
 
-## Use the parameters to retrieve what you need
+### Use parameters to retrieve what you need
 
-### Examples with HTTP requests
+#### Examples with HTTP requests
 
 **Retrieve all failed events**  
 `GET https://api.hookdeck.io/events?response_status[gte]=300`

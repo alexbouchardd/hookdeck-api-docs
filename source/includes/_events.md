@@ -183,18 +183,15 @@ This endpoint retrieves all events.
 }
 ```
 
-Retrieve all failed events by querying the successful_at and the response_status parameters.
+Retrieve all failed events by querying the successful_at or the response_status parameters.
 
 ### HTTP Request
 
-`GET https://api.hookdeck.io/events/`
+Successful At  
+`GET https://api.hookdeck.io/events?successful_at=null`
 
-### URL Parameter
-
-| Parameter       | Query   | Description                           |
-| --------------- | ------- | ------------------------------------- |
-| successful_at   | null    | not sucessful event                   |
-| response_status | gte 300 | events with a status greater than 300 |
+Response Status  
+`GET https://api.hookdeck.io/events?response_status[gte]=300`
 
 ## Retrieve an event
 

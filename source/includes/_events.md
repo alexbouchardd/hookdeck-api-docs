@@ -58,7 +58,8 @@ Events objects allow you to monitor the events of your webhooks.
     "order_by": "created_at",
     "dir": "desc",
     "limit": 100,
-    "next": "evt_1pbxk9lh598s"
+    "next": "evt_5b3mzbxk83caj7p",
+    "prev": "evt_12n4ffxk8admulc"
   },
   "total_count": 109,
   "count": 100,
@@ -118,6 +119,7 @@ This endpoint retrieves all events.
 
 `GET https://api.hookdeck.io/events`
 
+<<<<<<< Updated upstream
 ### Use parameters to retrieve what you need
 
 **Examples with HTTP request**
@@ -130,6 +132,13 @@ Retrieve all successful event
 
 Retrieve events between two dates
 `https://api.hookdeck.io/events?created_at[gte]=2020-10-01&created_at[lte]=2020-10-16`
+=======
+### Query Parameter
+
+| Parameter | Type      | Description                                 |
+| --------- | --------- | ------------------------------------------- |
+| archived  | `boolean` | Include the archived ressources in response |
+>>>>>>> Stashed changes
 
 ## Retrieve an event
 

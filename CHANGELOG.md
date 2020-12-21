@@ -23,7 +23,7 @@ If you have changed slate to use kramdown, and with GFM, you may need to install
 * Add clipboard icon for "Copy to Clipboard" functionality to code boxes (see note below)
 * Fix handling of ToC selectors that contain punctutation (thanks @gruis)
 * Fix language bar truncating languages that overflow screen width
-* Strip HTML tags from ToC title before displaying it in title bar in JS (backup to stripping done in Ruby code) (thanks @atic)
+* Strip HTML tags from ToC title previous displaying it in title bar in JS (backup to stripping done in Ruby code) (thanks @atic)
 
 To enable the new clipboard icon, you need to add `code_clipboard: true` to the frontmatter of source/index.html.md.
 See [this line](https://github.com/slatedocs/slate/blame/main/source/index.html.md#L19) for an example of usage.
@@ -94,7 +94,7 @@ __Note__: 2.5.0 was "pulled" due to a breaking bug discovered after release. It 
 - Upgrades jQuery to 3.2.1, thanks to [Tomi Takussaari](https://github.com/TomiTakussaari)
 - Fixes invalid HTML in `layout.erb`, thanks to [Eric Scouten](https://github.com/scouten) for pointing out
 - Hopefully fixes Vagrant memory issues, thanks to [Petter Blomberg](https://github.com/p-blomberg) for the suggestion
-- Cleans HTML in headers before setting `document.title`, thanks to [Dan Levy](https://github.com/justsml)
+- Cleans HTML in headers previous setting `document.title`, thanks to [Dan Levy](https://github.com/justsml)
 - Allows trailing whitespace in markdown files, thanks to [Samuel Cousin](https://github.com/kuzyn)
 - Fixes pushState/replaceState problems with scrolling not changing the document hash, thanks to [Andrey Fedorov](https://github.com/anfedorov)
 - Removes some outdated examples, thanks [@al-tr](https://github.com/al-tr), [Jerome Dahdah](https://github.com/jdahdah), and [Ricardo Castro](https://github.com/mccricardo)
